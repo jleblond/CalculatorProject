@@ -13,16 +13,20 @@ class MathHelper:
         _SERIES_ITERATION_LIMIT : integer
             Constant limit to the number of iterations a series can perform.
     """
-    _SERIES_ITERATION_LIMIT = sys.getrecursionlimit() - 50 # Seemed to crash at around 986, not sure why so I subtracted 50 to be safe...
+    _SERIES_ITERATION_LIMIT = 9999
 
     """
         _FACTORIAL_ITERATION_LIMIT : integer
-            Constant limit to how far the factorial calculation can be reached using Python's primitive data types.    
+            Constant limit to how far the factorial calculation can be reached using Python's primitive data types.
+            A regular float cannot store the factorial of 171 in memory.
     """
     _FACTORIAL_ITERATION_LIMIT = 170
 
     """
         Calculate e to the power of the provided exponent.
+
+        Author: Andrew Korolus (40055081)
+        Date: 2020-05-23
 
         fExponent : float
             The exponent to be applied to Euler's number (e).
@@ -59,6 +63,9 @@ class MathHelper:
 
     """
         Calculate the natural logarithm of the provided value.
+
+        Author: Andrew Korolus (40055081)
+        Date: 2020-05-23
 
         fValue : float
             The value to be applied to the natural logarithm.
@@ -103,6 +110,9 @@ class MathHelper:
         Calculate the factorial of a number.
         This method uses tail recursion to save on function stacks.
 
+        Author: Andrew Korolus (40055081)
+        Date: 2020-05-23
+
         iValue : integer
             The value to be applied to the factorial.
         iAccumulator : integer 
@@ -110,6 +120,15 @@ class MathHelper:
     """
     @staticmethod
     def factorial(iValue, iAccumulator = 1):
+        # We require the value be an integer
+        if isinstance(iValue, int) == False: return False
+
+        # We require the accumulator be an integer as well
+        if isinstance(iAccumulator, int) == False: return False
+        
+        # Negatives don't work for simple factorial
+        if iValue < 0: return False
+        
         if iValue == 0: return 1
         elif iValue == 1: return iAccumulator
         else: return MathHelper.factorial(iValue - 1, iValue * iAccumulator)
@@ -117,6 +136,11 @@ class MathHelper:
 
     """
         Calculate a simple power between a Real base and an integer exponent.
+        A "simple" power, here, is defined as a^b, where b is a positive integer number.
+        Algorithm used: Power Algorithm by Alvaro Videla
+
+        Author: Andrew Korolus (40055081)
+        Date: 2020-05-23
 
         fBase : float
             The base of the power function.
@@ -125,18 +149,29 @@ class MathHelper:
     """
     @staticmethod
     def simplePow(fBase, iExponent):
-        # Case 1: The exponent is equal to 0
-        if iExponent == 0: 
-            return 1
+        # A simple power requires the exponent to be positive
+        if iExponent < 0: return False
 
-        # Case 2: The exponent is even
-        elif iExponent % 2 == 0:
-            iHalfedExponent = iExponent / 2
-            return MathHelper.simplePow(fBase, iHalfedExponent) * MathHelper.simplePow(fBase, iHalfedExponent)
+        # A simple power also requires the exponent be an integer
+        if isinstance(iExponent, int) == False: return False
+        
+        # Define what we will be returning as our answer
+        fReturnVal = 1
 
-        # Case 3: The exponent is odd
-        else:
-            return fBase * MathHelper.simplePow(fBase, iExponent - 1)
+        while True:
+            fTest = iExponent % 2
+            iExponent = int(iExponent / 2)
+
+            if fTest == 1:
+                fReturnVal *= fBase
+            
+            if iExponent == 0:
+                break
+            
+            fBase = fBase * fBase
+        # End while
+
+        return fReturnVal
     # End function simplePow
 
 # End class MathHelper
