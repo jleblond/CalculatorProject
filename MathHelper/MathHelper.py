@@ -174,4 +174,19 @@ class MathHelper:
         return fReturnVal
     # End function simplePow
 
+    """
+        Calculates a power of base 10.
+        Calls simplePow Function.
+
+        Author: William Kang (40099021)
+        Date: 2020-05-30
+        
+    """
+    
+    @staticmethod
+    def powTen(x):
+        return MathHelper.simplePow(10, x)
+
+    # End function powTen
+    
 # End class MathHelper
