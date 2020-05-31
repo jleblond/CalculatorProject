@@ -186,6 +186,7 @@ class MathHelper:
     @staticmethod
     def powTen(x):
         return MathHelper.simplePow(10, x)
+    # End function powTen
 
     """
         Calculates average of given list
@@ -203,6 +204,7 @@ class MathHelper:
         avg = total/numList[-1]
 
         return avg
+    # End function average
 
     """
         Calculates Mean Aboslute Deviation (MAD)
@@ -224,6 +226,6 @@ class MathHelper:
 
         return average(abs_difference)
 
-    # End function powTen
+    # End function Mean Absolute Deviation (MAD)
     
 # End class MathHelper
