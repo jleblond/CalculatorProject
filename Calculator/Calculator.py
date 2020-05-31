@@ -95,13 +95,15 @@ class Calculator:
     """
 
     def standard_deviation(self, arr_of_ints):
+        return 0 if len(arr_of_ins) == 1
+
         mean_val = MathHelper.mean(arr_of_ints)
         sum_sqr_diffs = 0
         for i in arr_of_ints:
             abs_diff = MathHelper.absolute(i - mean_val)
             sum_sqr_diffs += MathHelper.exponential(abs_diff, 2)
 
-        return MathHelper.square_root(sum_sqr_diffs / len(arr_of_ints))
+        return MathHelper.square_root(sum_sqr_diffs / (len(arr_of_ints) - 1))
 
     # End function Standard Deviation
 
