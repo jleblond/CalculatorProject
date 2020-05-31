@@ -16,7 +16,8 @@ class Calculator:
     """
     def __init__(self):
         # To store the last calculated answer to a function.
-        self.fLastAnswer = 0        
+        self.fLastAnswer = 0
+        self.mathHelper = MathHelper()
     # End function __init__
 
     """ 
@@ -66,12 +67,12 @@ class Calculator:
 
         # If the exponent is a simple integer, then we can calculate the power using the simple power function
         if isinstance(fPositiveExponent, int) :
-            fResult = MathHelper.simplePow(fBase, fPositiveExponent)
+            fResult = self.mathHelper.simplePow(fBase, fPositiveExponent)
         # Otherwise, we must compute the power using the general formula stated above.
         else:
-            fLogResult = MathHelper.ln(fBase)
+            fLogResult = self.mathHelper.ln(fBase)
             fExpExponent = fPositiveExponent * fLogResult
-            fResult = MathHelper.exp(fExpExponent)
+            fResult = self.mathHelper.exp(fExpExponent)
         # End if
 
 
