@@ -40,6 +40,11 @@ class Calculator:
         if fExponent == 0: 
             self.fLastAnswer = 1
             return 1
+
+        # Any power with a base 0 is equal to 0
+        if fBase == 0: 
+            self.fLastAnswer = 0
+            return 0
         
         # The second easy case is to check if the exponent is equal to 1
         # Any number to the power of 1 is equal to itself
