@@ -40,12 +40,17 @@ class Calculator:
         if fExponent == 0: 
             self.fLastAnswer = 1
             return 1
+
+        # Any power with a base 0 is equal to 0
+        if fBase == 0: 
+            self.fLastAnswer = 0
+            return 0
         
         # The second easy case is to check if the exponent is equal to 1
         # Any number to the power of 1 is equal to itself
         if fExponent == 1: 
             self.fLastAnswer = fBase
-            return fBase
+            return fBase        
         
         # Check if the exponent is a negative number or a positive number
         # We also need to store the positive value of the exponent, so let's declare a 
@@ -60,6 +65,11 @@ class Calculator:
             fPositiveExponent = fExponent * -1
             bExponentIsNegative = True
         # End if
+
+        # Check if the base is 0 and the exponent is negative
+        # This is an illegal case
+        if bExponentIsNegative and fBase == 0:
+            return False
 
         # Define the result variable
         fResult = 0

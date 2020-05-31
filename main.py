@@ -4,7 +4,7 @@ print("\n")
 
 objCalculator = Calculator()
 
-x = 2
+x = 0
 y = 2.6579816
 ans = objCalculator.power(x, y)
 print(ans)
