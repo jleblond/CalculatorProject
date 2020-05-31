@@ -201,7 +201,7 @@ class MathHelper:
         for i in numList:
             total += i
         
-        avg = total/numList[-1]
+        avg = total/len(numList)
 
         return avg
     # End function average
@@ -219,7 +219,7 @@ class MathHelper:
         average = MathHelper.average(numList)
         difference = []
         abs_difference = []
-        for num in enumerate(numList):
+        for num in numList:
             difference.append(num - average)
         for j in difference:
             abs_difference.append(abs(j)) 
