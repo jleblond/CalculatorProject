@@ -4,8 +4,8 @@
 # Returns values from the math library and the user defined function, as well as the amount of exact accurate decimal places, with the total average at the end
 # Added runtime data for performance purposes
 import math, timeit
-from Calculator import Math
-
+from Calculator import Calculator
+import Math
 
 usrInp = int(input("Amount of iterations (positive integer): "))
 totalStart = timeit.default_timer()

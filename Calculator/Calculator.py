@@ -85,4 +85,31 @@ class Calculator:
         return fResult
     # End function xExponentY
 
+    """
+        Calculates Mean Aboslute Deviation (MAD)
+
+        Author: Jeffrey Lam (40090989)
+        Date: 2020-05-30
+        
+    """
+
+    @staticmethod
+    def MAD(numList):
+        average = MathHelper.average(numList)
+        difference = []
+        abs_difference = []
+
+        #Calculate the difference between each element and the average
+        for num in numList:
+            difference.append(num - average)
+
+        #Converting the difference into absolute values
+        for j in difference:
+            abs_difference.append(abs(j)) 
+        
+        #Return average of absolute differences
+        return average(abs_difference)
+
+    # End function Mean Absolute Deviation (MAD)
+
 # End class Calculator

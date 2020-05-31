@@ -160,3 +160,17 @@ def simplePow(fBase, iExponent):
 
     return fReturnVal
 # End function simplePow
+
+    @staticmethod
+    def average(numList):
+        for i in numList:
+            total += i
+        
+        avg = total/len(numList)
+
+        return avg
+    # End function average
+    
+# End class MathHelper
+
+
