@@ -160,3 +160,45 @@ def simplePow(fBase, iExponent):
 
     return fReturnVal
 # End function simplePow
+
+
+"""
+    Author: Jasmine Leblond-Chartrand
+    Date: 2020-05-31
+"""
+
+
+def mean(arr_of_ints):
+    sum = 0
+    for i in arr_of_ints:
+        sum += i
+    return (sum /len(arr_of_ints))
+
+
+def exponential(a, b):
+    result = 1
+    for i in range(b):
+        result *= a
+    return result
+
+
+def absolute(n):
+    return n if n > 0 else (0 - n)
+
+def square_root(n):
+    # using Newton Method for Square Root
+    # source: https://en.wikipedia.org/wiki/Methods_of_computing_square_roots#Example
+
+    if n == 0:
+        return 0
+
+    raise Exception("Square root of negative number impossible")if n < 0
+
+    x_prev = n
+    precision_value = 0.0001
+    x = 0
+    while(True):
+        x = (x_prev + n/x_prev)/2
+        if absolute(x_prev - x) < precision_value:
+            return x
+        x_prev = x
