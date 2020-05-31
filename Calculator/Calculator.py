@@ -1,4 +1,4 @@
-from MathHelper.MathHelper import MathHelper
+from MathHelper import MathHelper
 
 """
     Contains the transcendental functions required for the operation of the ETERNITY calculator.
@@ -17,7 +17,6 @@ class Calculator:
     def __init__(self):
         # To store the last calculated answer to a function.
         self.fLastAnswer = 0
-        self.mathHelper = MathHelper()
     # End function __init__
 
     """ 
@@ -67,12 +66,12 @@ class Calculator:
 
         # If the exponent is a simple integer, then we can calculate the power using the simple power function
         if isinstance(fPositiveExponent, int) :
-            fResult = self.mathHelper.simplePow(fBase, fPositiveExponent)
+            fResult = MathHelper.simplePow(fBase, fPositiveExponent)
         # Otherwise, we must compute the power using the general formula stated above.
         else:
-            fLogResult = self.mathHelper.ln(fBase)
+            fLogResult = MathHelper.ln(fBase)
             fExpExponent = fPositiveExponent * fLogResult
-            fResult = self.mathHelper.exp(fExpExponent)
+            fResult = MathHelper.exp(fExpExponent)
         # End if
 
 
