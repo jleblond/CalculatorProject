@@ -31,8 +31,7 @@ class MathHelper:
         fExponent : float
             The exponent to be applied to Euler's number (e).
     """
-    @staticmethod
-    def exp(fExponent):
+    def exp(self, fExponent):
         # Define the loop iterator
         i = 0
 
@@ -42,10 +41,10 @@ class MathHelper:
         # To calculate the exponential, we can use the sumation of i=0->inf [ (fExponent^i) / i! ]
         while i < MathHelper._FACTORIAL_ITERATION_LIMIT:
             # Calculate the basic power for the numerator
-            fNumerator = MathHelper.simplePow(fExponent, i)
+            fNumerator = self.simplePow(fExponent, i)
 
             # Calculate the factorial for the demonimator
-            iDemoninator = MathHelper.factorial(i, 1)
+            iDemoninator = self.factorial(i, 1)
             
             # Calculate this step's value
             fStepValue = fNumerator / iDemoninator
@@ -70,8 +69,7 @@ class MathHelper:
         fValue : float
             The value to be applied to the natural logarithm.
     """
-    @staticmethod
-    def ln(fValue):
+    def ln(self, fValue):
         # Negatives don't work for natural logs
         if fValue < 0: return False
         
@@ -90,7 +88,7 @@ class MathHelper:
 
             # Calculate the second part of the muliplication
             fStepBase = (fValue - 1) / (fValue + 1)
-            fSecondPart = MathHelper.simplePow(fStepBase, iStepValue)
+            fSecondPart = self.simplePow(fStepBase, iStepValue)
             
             # Multiply the two parts together
             fStepResult = fFirstPart * fSecondPart
@@ -118,8 +116,7 @@ class MathHelper:
         iAccumulator : integer 
             Keeping track of the current factorial value.
     """
-    @staticmethod
-    def factorial(iValue, iAccumulator = 1):
+    def factorial(self, iValue, iAccumulator = 1):
         # We require the value be an integer
         if isinstance(iValue, int) == False: return False
 
@@ -131,7 +128,7 @@ class MathHelper:
         
         if iValue == 0: return 1
         elif iValue == 1: return iAccumulator
-        else: return MathHelper.factorial(iValue - 1, iValue * iAccumulator)
+        else: return self.factorial(iValue - 1, iValue * iAccumulator)
     # End function factorial
 
     """
@@ -147,8 +144,7 @@ class MathHelper:
         iExponent : integer
             The exponent of the power function.
     """
-    @staticmethod
-    def simplePow(fBase, iExponent):
+    def simplePow(self, fBase, iExponent):
         # A simple power requires the exponent to be positive
         if iExponent < 0: return False
 
