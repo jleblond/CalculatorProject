@@ -187,6 +187,43 @@ class MathHelper:
     def powTen(x):
         return MathHelper.simplePow(10, x)
 
+    """
+        Calculates average of given list
+
+        Author: Jeffrey Lam (40090989)
+        Date: 2020-05-30
+        
+    """
+
+    @staticmethod
+    def average(numList):
+        for i in numList:
+            total += i
+        
+        avg = total/numList[-1]
+
+        return avg
+
+    """
+        Calculates Mean Aboslute Deviation (MAD)
+
+        Author: Jeffrey Lam (40090989)
+        Date: 2020-05-30
+        
+    """
+
+    @staticmethod
+    def MAD(numList):
+        average = MathHelper.average(numList)
+        difference = []
+        abs_difference = []
+        for num in enumerate(numList):
+            difference.append(num - average)
+        for j in difference:
+            abs_difference.append(abs(j)) 
+
+        return average(abs_difference)
+
     # End function powTen
     
 # End class MathHelper
