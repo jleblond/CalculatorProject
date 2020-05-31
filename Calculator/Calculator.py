@@ -1,4 +1,4 @@
-from MathHelper.MathHelper import MathHelper
+from MathHelper import MathHelper
 
 """
     Contains the transcendental functions required for the operation of the ETERNITY calculator.
@@ -16,7 +16,7 @@ class Calculator:
     """
     def __init__(self):
         # To store the last calculated answer to a function.
-        self.fLastAnswer = 0        
+        self.fLastAnswer = 0
     # End function __init__
 
     """ 
