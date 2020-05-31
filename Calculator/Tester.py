@@ -5,7 +5,7 @@
 # Added runtime data for performance purposes
 import math, timeit
 from Calculator import Calculator
-
+import Math
 
 usrInp = int(input("Amount of iterations (positive integer): "))
 totalStart = timeit.default_timer()
@@ -14,7 +14,7 @@ for i in range(0, usrInp+1):
     iterStart = timeit.default_timer()
     if i!=0:
         x = str(math.log10(i))
-        y = str(math.log10(i))
+        y = str(Math.log10(i))
         print(i, x)
         print(i, y)
 
