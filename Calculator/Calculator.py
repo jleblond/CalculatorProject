@@ -147,13 +147,8 @@ class Calculator:
             abs_difference.append(MathHelper.absolute(j))
         
         #Return average of absolute differences
-        return average(abs_difference)
+        return MathHelper.average(abs_difference)
 
     # End function Mean Absolute Deviation (MAD)
 
 # End class Calculator
-
-
-# a = Calculator()
-# b = a.MAD([5,10, 15])
-# print(b)
