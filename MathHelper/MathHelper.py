@@ -168,13 +168,6 @@ def simplePow(fBase, iExponent):
 """
 
 
-def mean(arr_of_ints):
-    sum = 0
-    for i in arr_of_ints:
-        sum += i
-    return (sum /len(arr_of_ints))
-
-
 def exponential(a, b):
     result = 1
     for i in range(b):
@@ -191,8 +184,8 @@ def square_root(n):
 
     if n == 0:
         return 0
-
-    raise Exception("Square root of negative number impossible")if n < 0
+    elif n < 0:
+        raise Exception("Square root of negative number impossible" )
 
     x_prev = n
     precision_value = 0.0001
@@ -202,3 +195,20 @@ def square_root(n):
         if absolute(x_prev - x) < precision_value:
             return x
         x_prev = x
+
+
+
+def average(numList):
+    total = 0
+    for i in numList:
+        total += i
+
+    avg = total/len(numList)
+
+    return avg
+# End function average
+    
+# End class MathHelper
+
+
+

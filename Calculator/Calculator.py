@@ -40,12 +40,17 @@ class Calculator:
         if fExponent == 0: 
             self.fLastAnswer = 1
             return 1
+
+        # Any power with a base 0 is equal to 0
+        if fBase == 0: 
+            self.fLastAnswer = 0
+            return 0
         
         # The second easy case is to check if the exponent is equal to 1
         # Any number to the power of 1 is equal to itself
         if fExponent == 1: 
             self.fLastAnswer = fBase
-            return fBase
+            return fBase        
         
         # Check if the exponent is a negative number or a positive number
         # We also need to store the positive value of the exponent, so let's declare a 
@@ -60,6 +65,11 @@ class Calculator:
             fPositiveExponent = fExponent * -1
             bExponentIsNegative = True
         # End if
+
+        # Check if the base is 0 and the exponent is negative
+        # This is an illegal case
+        if bExponentIsNegative and fBase == 0:
+            return False
 
         # Define the result variable
         fResult = 0
@@ -85,6 +95,7 @@ class Calculator:
         return fResult
     # End function xExponentY
 
+
     """ 
            Calculate the standard deviation from a dataset expressed as an array of integer values
 
@@ -95,9 +106,10 @@ class Calculator:
     """
 
     def standard_deviation(self, arr_of_ints):
-        return 0 if len(arr_of_ins) == 1
+        if len(arr_of_ints) == 1:
+            return 0
 
-        mean_val = MathHelper.mean(arr_of_ints)
+        mean_val = MathHelper.average(arr_of_ints)
         sum_sqr_diffs = 0
         for i in arr_of_ints:
             abs_diff = MathHelper.absolute(i - mean_val)
@@ -109,3 +121,39 @@ class Calculator:
 
 # End class Calculator
 
+
+    """
+        Calculates Mean Aboslute Deviation (MAD)
+
+        Author: Jeffrey Lam (40090989)
+        Date: 2020-05-30
+        
+    """
+
+    @staticmethod
+    def MAD(numList):
+        average = MathHelper.average(numList)
+        difference = []
+        abs_difference = []
+
+        #Calculate the difference between each element and the average
+        for num in numList:
+            difference.append(num - average)
+
+
+
+        #Converting the difference into absolute values
+        for j in difference:
+            abs_difference.append(MathHelper.absolute(j))
+        
+        #Return average of absolute differences
+        return average(abs_difference)
+
+    # End function Mean Absolute Deviation (MAD)
+
+# End class Calculator
+
+
+# a = Calculator()
+# b = a.MAD([5,10, 15])
+# print(b)
