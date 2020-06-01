@@ -122,4 +122,14 @@ class Calculator:
 
     # End function Mean Absolute Deviation (MAD)
 
+    """
+        Calculates hyperbolic cosine function (cosh)
+
+        Author: Kyungjin Kim (40066802)
+        Date: 2020-06-01
+    """
+    @staticmethod
+    def cosh(x):
+        return (MathHelper.exp(x) + MathHelper.exp(-x))/2
+
 # End class Calculator
