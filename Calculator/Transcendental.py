@@ -184,3 +184,27 @@ def MAD(numList):
     return MathHelper.average(abs_difference)
 
 # End function Mean Absolute Deviation (MAD)
+
+
+#   Computes the taylor series for Sin. Source = "https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions"
+def radSin(X):
+    X = X%(2*MathHelper.Pi())
+    out = 0
+    sign = -1
+    for i in range(1, 100, 2):
+        sign = -sign
+        out += sign*MathHelper.intPow(X,i)/MathHelper.fact(i)
+    return out
+
+#   converts input into Rad, then  runs radSin
+def sin(X):
+    X = MathHelper.radian(X)
+    return radSin(X)
+
+#   Computes Cos by doing Sin(X + 90)
+def cos(X):
+    return sin(X + 90)
+
+#   Same concesp as Cos, converts radSin by inputing (X+(Pi/2))
+def radCos(X):
+    return radSin(X + (MathHelper.Pi()/2))
