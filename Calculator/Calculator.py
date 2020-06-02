@@ -15,5 +15,7 @@ class Calculator:
 
 # End class Calculator
 
-a = Transcendental.standard_deviation([5,10,15])
-print(a)
+
+
+# a = Transcendental.standard_deviation([5,10,15])
+# print(a)
