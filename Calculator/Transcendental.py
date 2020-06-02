@@ -208,3 +208,21 @@ def cos(X):
 #   Same concesp as Cos, converts radSin by inputing (X+(Pi/2))
 def radCos(X):
     return radSin(X + (MathHelper.Pi()/2))
+
+
+
+
+"""
+    Calculates Exponent 10
+
+    Author: William Kang (40099021)
+    Date: 2020-06-02
+
+"""
+
+
+def powTen(exp):
+    return power(10, exp)
+
+
+# End function powTem
