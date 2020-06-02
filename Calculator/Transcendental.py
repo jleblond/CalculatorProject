@@ -91,34 +91,34 @@ def power(fBase, fExponent):
 """ 
        Calculate
 
-       Date:
-       Author: 
+       Date: May 25th 2020
+       Author: Alexis Laurens-Renner - 40055137
        Transcendental function: log10(x)
 
 """
 # formula based on: Beebe, N. H. (2017). 10.3.2. In The Mathematical-Function Computation Handbook: Programming Using the MathCW
 # Portable Software Library (pp. 287-290). Springer International Publishing. doi:https://doi-org.lib-ezproxy.concordia.ca/10.1007/978-3-319-64110-2
 # A simplified version of the formula is used here
-def log10(X): # Handle exceptional cases, return -1 until adding exceptions
-    if (X == 1):
+def log10(x): # Handle exceptional cases, return -1 until adding exceptions
+    if (x == 1):
         return 0
-    if (X == 0):
+    if (x == 0):
         return -1
-    if (X < 0):
+    if (x < 0):
         return -1
 
     n = 0  # Start exponent of base 10
 
-    while (X >= 1.0):
-        X = X / 10.0
+    while (x >= 1.0):
+        x = x / 10.0
         n += 1
 
-    while (X <= 0.316227766016838):
-        X = X * 10.0
+    while (x <= 0.316227766016838):
+        x = x * 10.0
         n = n - 1
 
     # Produce a change of variable
-    z = (X - 1.0) / (X + 1.0)
+    z = (x - 1.0) / (x + 1.0)
     D = 0.868588963807  # 2*log10(e) approximated to the first 12 digits
 
     # Taylor series

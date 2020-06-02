@@ -1,4 +1,4 @@
-import Transcendental
+from Calculator import Transcendental
 
 class Calculator:
 
