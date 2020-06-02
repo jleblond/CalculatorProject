@@ -149,7 +149,7 @@ def standard_deviation(arr_of_ints):
     sum_sqr_diffs = 0
     for i in arr_of_ints:
         abs_diff = MathHelper.absolute(i - mean_val)
-        sum_sqr_diffs += MathHelper.exponential(abs_diff, 2)
+        sum_sqr_diffs += MathHelper.simplePow(abs_diff, 2)
 
     return MathHelper.square_root(sum_sqr_diffs / (len(arr_of_ints) - 1))
 

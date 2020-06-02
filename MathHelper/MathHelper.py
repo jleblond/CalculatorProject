@@ -167,14 +167,6 @@ def simplePow(fBase, iExponent):
     Date: 2020-05-31
 """
 
-
-def exponential(a, b):
-    result = 1
-    for i in range(b):
-        result *= a
-    return result
-
-
 def absolute(n):
     return n if n > 0 else (0 - n)
 
