@@ -1,5 +1,3 @@
-import sys
-
 """
     _SERIES_ITERATION_LIMIT : integer
         Constant limit to the number of iterations a series can perform.
@@ -13,7 +11,9 @@ _SERIES_ITERATION_LIMIT = 9999
 """
 _FACTORIAL_ITERATION_LIMIT = 170
 
-"""
+
+def exp(fExponent):
+    """
     Calculate e to the power of the provided exponent.
 
     Author: Andrew Korolus (40055081)
@@ -21,8 +21,7 @@ _FACTORIAL_ITERATION_LIMIT = 170
 
     fExponent : float
         The exponent to be applied to Euler's number (e).
-"""
-def exp(fExponent):
+    """
     # Define the loop iterator
     i = 0
 
@@ -35,7 +34,7 @@ def exp(fExponent):
         fNumerator = simplePow(fExponent, i)
 
         # Calculate the factorial for the demonimator
-        iDemoninator = factorial(i, 1)
+        iDemoninator = factorial_recursive(i, 1)
         
         # Calculate this step's value
         fStepValue = fNumerator / iDemoninator
@@ -51,7 +50,9 @@ def exp(fExponent):
     return fResult
 # End function exp
 
-"""
+
+def ln(fValue):
+    """
     Calculate the natural logarithm of the provided value.
 
     Author: Andrew Korolus (40055081)
@@ -59,8 +60,7 @@ def exp(fExponent):
 
     fValue : float
         The value to be applied to the natural logarithm.
-"""
-def ln(fValue):
+    """
     # Negatives don't work for natural logs
     if fValue < 0: return False
     
@@ -95,7 +95,9 @@ def ln(fValue):
     return fResult
 # End function ln
 
-"""
+
+def factorial_recursive(iValue, iAccumulator = 1):
+    """
     Calculate the factorial of a number.
     This method uses tail recursion to save on function stacks.
 
@@ -106,23 +108,21 @@ def ln(fValue):
         The value to be applied to the factorial.
     iAccumulator : integer 
         Keeping track of the current factorial value.
-"""
-def factorial(iValue, iAccumulator = 1):
-    # We require the value be an integer
-    if isinstance(iValue, int) == False: return False
-
-    # We require the accumulator be an integer as well
-    if isinstance(iAccumulator, int) == False: return False
+    """
+    # We require the value and the accumlator to be an integer
+    if not (isinstance(iValue, int) and isinstance(iAccumulator, int)): 
+        return False
     
     # Negatives don't work for simple factorial
     if iValue < 0: return False
-    
     if iValue == 0: return 1
     elif iValue == 1: return iAccumulator
-    else: return factorial(iValue - 1, iValue * iAccumulator)
+    else: return factorial_recursive(iValue - 1, iValue * iAccumulator)
 # End function factorial
 
-"""
+
+def simplePow(fBase, iExponent):
+    """
     Calculate a simple power between a Real base and an integer exponent.
     A "simple" power, here, is defined as a^b, where b is a positive integer number.
     Algorithm used: Power Algorithm by Alvaro Videla
@@ -134,13 +134,12 @@ def factorial(iValue, iAccumulator = 1):
         The base of the power function.
     iExponent : integer
         The exponent of the power function.
-"""
-def simplePow(fBase, iExponent):
+    """
     # A simple power requires the exponent to be positive
     if iExponent < 0: return False
 
     # A simple power also requires the exponent be an integer
-    if isinstance(iExponent, int) == False: return False
+    if not isinstance(iExponent, int): return False
     
     # Define what we will be returning as our answer
     fReturnVal = 1
@@ -162,12 +161,13 @@ def simplePow(fBase, iExponent):
 # End function simplePow
 
 
-"""
+def absolute(n):
+    """
+    returns the absolute value of a number
+
     Author: Jasmine Leblond-Chartrand
     Date: 2020-05-31
-"""
-
-def absolute(n):
+    """
     return n if n > 0 else (0 - n)
 
 def square_root(n):
@@ -191,20 +191,25 @@ def square_root(n):
 
 
 def average(numList):
+    """
+    unweighted mean of a list of numbers
+
+    Author: Jeffrey Lam
+    Date: 2020-05-31
+    """
     total = 0
     for i in numList:
         total += i
-
     avg = total/len(numList)
-
     return avg
 # End function average
+
 
 #
 #        Roman's Helper Functions
 #
 #Single use function that computes a very accurate estimation of pi, I copied the result into the pi function.
-def ComputePi():
+def computePi():
     pi = 3
     sign = -1
     for i in range(2,500000000,2):
@@ -226,7 +231,7 @@ def intPow(X, Y):
     return x
 
 #   Simple looping multiplication to return a factorial
-def fact(X):
+def factorial_loop(X):
     out = 1
     for i in range(1, X+1):
         out *= i
