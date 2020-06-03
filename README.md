@@ -10,8 +10,7 @@
 * Roman Lewandowski
 
 ## Description:
-* Software: a transcendental calculator
-* Purpose of the project: to study and experience the entire software development cycle
+A transcendental calculator
 
 ## Design
 `TODO`
