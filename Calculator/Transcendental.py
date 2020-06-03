@@ -12,7 +12,7 @@ Date: 2020-05-23
 Authors:
     Andrew Korolus (40055081)
 """
-from MathHelper import MathHelper
+import MathHelper
 
 
 
