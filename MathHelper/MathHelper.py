@@ -170,6 +170,7 @@ def absolute(n):
     """
     return n if n > 0 else (0 - n)
 
+
 def square_root(n):
     # using Newton Method for Square Root
     # source: https://en.wikipedia.org/wiki/Methods_of_computing_square_roots#Example
@@ -189,7 +190,6 @@ def square_root(n):
         x_prev = x
 
 
-
 def average(numList):
     """
     unweighted mean of a list of numbers
@@ -205,9 +205,7 @@ def average(numList):
 # End function average
 
 
-#
-#        Roman's Helper Functions
-#
+# Roman's Helper Functions
 #Single use function that computes a very accurate estimation of pi, I copied the result into the pi function.
 def computePi():
     pi = 3
@@ -217,6 +215,7 @@ def computePi():
         pi += sign*4/((i)*(i+1)*(i+2))
         print(i)
     return pi
+
 
 #   This function just returns the first 16 digits of Pi, as calculated by the previous function
 def Pi():
@@ -230,6 +229,7 @@ def intPow(X, Y):
         x *= X
     return x
 
+
 #   Simple looping multiplication to return a factorial
 def factorial_loop(X):
     out = 1
@@ -237,9 +237,11 @@ def factorial_loop(X):
         out *= i
     return out
 
+
 #   a conversion from Degrees to Radians, required as the taylor series for Sin functions in Rad
 def radian(X):
     return X*Pi()/180
+
 
 #   a conversion from Radians to Degrees
 def degrees(X):
