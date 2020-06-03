@@ -1,5 +1,12 @@
 """
 Contains the transcendental functions required for the operation of the ETERNITY calculator.
+1. x^y
+2. log10(x)
+3. std
+4. MAD
+5. Trig: sin(x), radSin(x), cos(x), radCos(x)
+6. 10^x
+7. cosh(x)
 
 Date: 2020-05-23
 Authors:
@@ -210,7 +217,7 @@ def powTen(exp):
     Date: 2020-06-02
     """
     return power(10, exp)
-
+# End function powTen
 
 def cosh(x):
     """
@@ -220,4 +227,6 @@ def cosh(x):
     Date: 2020-06-01
     """
     return (MathHelper.exp(x) + MathHelper.exp(-x))/2
-# End function powTem
+# End function cosh
+
+# End module Transcendental
