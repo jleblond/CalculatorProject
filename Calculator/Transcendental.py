@@ -1,49 +1,59 @@
-from MathHelper import MathHelper
-
 """
-    Contains the transcendental functions required for the operation of the ETERNITY calculator.
+Contains the transcendental functions required for the operation of the ETERNITY calculator.
+1. x^y
+2. log10(x)
+3. std
+4. MAD
+5. Trig: sin(x), radSin(x), cos(x), radCos(x)
+6. 10^x
+7. cosh(x)
 
-    Date: 2020-05-23
-    Authors:
-        Andrew Korolus (40055081)
-
+Date: 2020-05-23
+Authors:
+    Andrew Korolus (40055081)
 """
+import MathHelper
 
-""" 
-   Calculate the power of the first number raised to the second number.        
-   Supports any Real number for the base and exponent.
-   Uses the general formula: pow(a, b) = exp(b * ln(a)), for non-integer exponents b.
 
-   Date: 2020-05-23
-   Author: Andrew Korolus (40055081)
-   Transcendental function: x^y
 
-   fBase : float
-       The base value of the expression.
-   fExponent : float
-       The exponent value of the expression.
-"""
+
+fLastAnswer = None
 
 
 def power(fBase, fExponent):
+    """ 
+    Calculate the power of the first number raised to the second number.        
+    Supports any Real number for the base and exponent.
+    Uses the general formula: pow(a, b) = exp(b * ln(a)), for non-integer exponents b.
+
+    Date: 2020-05-23
+    Author: Andrew Korolus (40055081)
+    Transcendental function: x^y
+
+    fBase : float
+        The base value of the expression.
+    fExponent : float
+        The exponent value of the expression.
+    """
+    global fLastAnswer
     # The first easy case is to check if the exponent is equal to 0
     # Any number to the power of 0 is equal to 1
     if fExponent == 0:
-        self.fLastAnswer = 1
+        fLastAnswer = 1
         return 1
 
     # Any power with a base 0 is equal to 0
     if fBase == 0:
-        self.fLastAnswer = 0
+        fLastAnswer = 0
         return 0
 
     # The second easy case is to check if the exponent is equal to 1
     # Any number to the power of 1 is equal to itself
     if fExponent == 1:
-        self.fLastAnswer = fBase
+        fLastAnswer = fBase
         return fBase
 
-        # Check if the exponent is a negative number or a positive number
+    # Check if the exponent is a negative number or a positive number
     # We also need to store the positive value of the exponent, so let's declare a
     # new variable to store the positive exponent, and a boolean to indicate whether
     # the exponent was negative or not
@@ -81,25 +91,22 @@ def power(fBase, fExponent):
     # End if
 
     # Set the last answer value and return the answer
-    self.fLastAnswer = fResult
+    fLastAnswer = fResult
     return fResult
-
-
 # End function xExponentY
 
 
-""" 
-       Calculate
-
-       Date: May 25th 2020
-       Author: Alexis Laurens-Renner - 40055137
-       Transcendental function: log10(x)
-
-"""
 # formula based on: Beebe, N. H. (2017). 10.3.2. In The Mathematical-Function Computation Handbook: Programming Using the MathCW
 # Portable Software Library (pp. 287-290). Springer International Publishing. doi:https://doi-org.lib-ezproxy.concordia.ca/10.1007/978-3-319-64110-2
 # A simplified version of the formula is used here
 def log10(x): # Handle exceptional cases, return -1 until adding exceptions
+    """ 
+    Calculate
+
+    Date: May 25th 2020
+    Author: Alexis Laurens-Renner - 40055137
+    Transcendental function: log10(x)
+    """
     if (x == 1):
         return 0
     if (x == 0):
@@ -127,21 +134,17 @@ def log10(x): # Handle exceptional cases, return -1 until adding exceptions
         sum += (z ** k) / k
 
     return D * sum + n
-
 #end of log10(X)
 
 
-""" 
-       Calculate the standard deviation from a dataset expressed as an array of integer values
-
-       Date: 2020-05-31
-       Author: Jasmine Leblond-Chartrand
-       Transcendental function: σ (Standard Deviation) 
-
-"""
-
-
 def standard_deviation(arr_of_ints):
+    """ 
+    Calculate the standard deviation from a dataset expressed as an array of integer values
+
+    Date: 2020-05-31
+    Author: Jasmine Leblond-Chartrand
+    Transcendental function: σ (Standard Deviation) 
+    """
     if len(arr_of_ints) == 1:
         return 0
 
@@ -152,22 +155,16 @@ def standard_deviation(arr_of_ints):
         sum_sqr_diffs += MathHelper.simplePow(abs_diff, 2)
 
     return MathHelper.square_root(sum_sqr_diffs / (len(arr_of_ints) - 1))
-
-
 # End function Standard Deviation
 
 
-
-"""
+def MAD(numList):
+    """
     Calculates Mean Aboslute Deviation (MAD)
 
     Author: Jeffrey Lam (40090989)
     Date: 2020-05-30
-
-"""
-
-
-def MAD(numList):
+    """
     average = MathHelper.average(numList)
     difference = []
     abs_difference = []
@@ -182,7 +179,6 @@ def MAD(numList):
 
     # Return average of absolute differences
     return MathHelper.average(abs_difference)
-
 # End function Mean Absolute Deviation (MAD)
 
 
@@ -193,36 +189,44 @@ def radSin(X):
     sign = -1
     for i in range(1, 100, 2):
         sign = -sign
-        out += sign*MathHelper.intPow(X,i)/MathHelper.fact(i)
+        out += sign*MathHelper.intPow(X,i)/MathHelper.factorial_loop(i)
     return out
+
 
 #   converts input into Rad, then  runs radSin
 def sin(X):
     X = MathHelper.radian(X)
     return radSin(X)
 
+
 #   Computes Cos by doing Sin(X + 90)
 def cos(X):
     return sin(X + 90)
+
 
 #   Same concesp as Cos, converts radSin by inputing (X+(Pi/2))
 def radCos(X):
     return radSin(X + (MathHelper.Pi()/2))
 
 
-
-
-"""
+def powTen(exp):
+    """
     Calculates Exponent 10
 
     Author: William Kang (40099021)
     Date: 2020-06-02
-
-"""
-
-
-def powTen(exp):
+    """
     return power(10, exp)
+# End function powTen
 
+def cosh(x):
+    """
+    Calculates hyperbolic cosine function (cosh)
 
-# End function powTem
+    Author: Kyungjin Kim (40066802)
+    Date: 2020-06-01
+    """
+    return (MathHelper.exp(x) + MathHelper.exp(-x))/2
+# End function cosh
+
+# End module Transcendental
