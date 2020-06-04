@@ -109,10 +109,8 @@ def log10(x): # Handle exceptional cases, return -1 until adding exceptions
     """
     if (x == 1):
         return 0
-    if (x == 0):
-        return -1
-    if (x < 0):
-        return -1
+    if (x <= 0):
+        return "NaN"
 
     n = 0  # Start exponent of base 10
 

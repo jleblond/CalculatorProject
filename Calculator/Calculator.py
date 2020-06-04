@@ -1,4 +1,4 @@
-import Transcendental
+
 
 class Calculator:
 
