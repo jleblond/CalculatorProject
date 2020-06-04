@@ -1,4 +1,10 @@
-from Calculator.Calculator import Calculator
+"""
+   Driver
+
+   Date: June 4th 2020
+   Author: Alexis Laurens-Renner - 40055137
+   Driver for presentation purposes
+   """
 from Calculator import Transcendental
 
 
