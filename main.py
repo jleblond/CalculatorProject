@@ -15,7 +15,6 @@ def static_driver():
     print("5^2.5 =", Transcendental.power(5, 2.5))
     print("5^0.13 =", Transcendental.power(5, 0.13))
     print("5^-2.5 =", Transcendental.power(5, -2.5))
-    print("where y is very large or very small")
     print("5^200 =", Transcendental.power(5, 200))
     print("5^0.00000001235 =", Transcendental.power(5, 0.00000001235))
 
@@ -77,14 +76,14 @@ while True:
         if menu == 0:
             static_driver()
         elif menu == 1:
-            xval = int(input("Enter the value for x: "))
-            yval = int(input("Enter the value for y: "))
+            xval = float(input("Enter the value for x: "))
+            yval = float(input("Enter the value for y: "))
             print(Transcendental.power(xval,yval))
         elif menu == 2:
-            xval = int(input("Enter the value for x: "))
+            xval = float(input("Enter the value for x: "))
             print(Transcendental.sin(xval))
         elif menu == 3:
-            xval = int(input("Enter the value for x: "))
+            xval = float(input("Enter the value for x: "))
             print(Transcendental.log10(xval))
         elif menu == 4:
             strLst = input("Enter a list of numbers separated by a space: ")
@@ -107,10 +106,10 @@ while True:
             else:
                 print("MAD("+str(lst)+") =",Transcendental.MAD(lst))
         elif menu == 6:
-            xval = int(input("Enter the value for x: "))
+            xval = float(input("Enter the value for x: "))
             print(Transcendental.cosh(xval))
         elif menu == 7:
-            xval = int(input("Enter the value for x: "))
+            xval = float(input("Enter the value for x: "))
             print(Transcendental.powTen(xval))
         else:
             print("Invalid Input: not an option")
