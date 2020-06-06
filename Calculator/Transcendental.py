@@ -7,18 +7,8 @@ Contains the transcendental functions required for the operation of the ETERNITY
 5. Trig: sin(x), radSin(x), cos(x), radCos(x)
 6. 10^x
 7. cosh(x)
-
-Date: 2020-05-23
-Authors:
-    Andrew Korolus (40055081)
 """
 import MathHelper
-
-
-
-
-fLastAnswer = None
-
 
 def power(fBase, fExponent):
     """ 
@@ -34,23 +24,19 @@ def power(fBase, fExponent):
         The base value of the expression.
     fExponent : float
         The exponent value of the expression.
-    """
-    global fLastAnswer
+    """    
     # The first easy case is to check if the exponent is equal to 0
     # Any number to the power of 0 is equal to 1
-    if fExponent == 0:
-        fLastAnswer = 1
+    if fExponent == 0:        
         return 1
 
     # Any power with a base 0 is equal to 0
-    if fBase == 0:
-        fLastAnswer = 0
+    if fBase == 0:        
         return 0
 
     # The second easy case is to check if the exponent is equal to 1
     # Any number to the power of 1 is equal to itself
-    if fExponent == 1:
-        fLastAnswer = fBase
+    if fExponent == 1:        
         return fBase
 
     # Check if the exponent is a negative number or a positive number
@@ -90,8 +76,7 @@ def power(fBase, fExponent):
         fResult = 1 / fResult
     # End if
 
-    # Set the last answer value and return the answer
-    fLastAnswer = fResult
+    # Set the last answer value and return the answer    
     return fResult
 # End function xExponentY
 
