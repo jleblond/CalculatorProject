@@ -124,12 +124,12 @@ def log10(x): # Handle exceptional cases, return -1 until adding exceptions
 
     # Produce a change of variable
     z = (x - 1.0) / (x + 1.0)
-    D = 0.868588963807  # 2*log10(e) approximated to the first 12 digits
+    D = 0.868588963807
 
     # Taylor series
     sum = z
     for k in range(3, 53, 2):
-        sum += (z ** k) / k
+        sum += (pow(z, k)) / k
 
     return D * sum + n
 #end of log10(X)
