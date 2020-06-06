@@ -122,7 +122,7 @@ def log10(x): # Handle exceptional cases, return -1 until adding exceptions
 
 def standard_deviation(arr_of_ints):
     """ 
-    Calculate the standard deviation from a dataset expressed as an array of integer values
+    Calculate the standard deviation from a sample set of values expressed as an array of integer values
 
     Date: 2020-05-31
     Author: Jasmine Leblond-Chartrand
