@@ -115,7 +115,7 @@ while True:
             print("Invalid Input: not an option")
             continue
 
-    except:
+    except:        
         print("Invalid Input: needs a number")
         continue
     finally:

@@ -62,8 +62,8 @@ def power(fBase, fExponent):
     fResult = 0
 
     # If the exponent is a simple integer, then we can calculate the power using the simple power function
-    if isinstance(fPositiveExponent, int):
-        fResult = MathHelper.simplePow(fBase, fPositiveExponent)
+    if isinstance(fPositiveExponent, int) or (fPositiveExponent).is_integer():
+        fResult = MathHelper.simplePow(fBase, int(fPositiveExponent))
     # Otherwise, we must compute the power using the general formula stated above.
     else:
         fLogResult = MathHelper.ln(fBase)

@@ -110,7 +110,7 @@ def factorial_recursive(iValue, iAccumulator = 1):
         Keeping track of the current factorial value.
     """
     # We require the value and the accumlator to be an integer
-    if not (isinstance(iValue, int) and isinstance(iAccumulator, int)): 
+    if not isinstance(iValue, int) or not isinstance(iAccumulator, int): 
         return False
     
     # Negatives don't work for simple factorial

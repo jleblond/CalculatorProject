@@ -1,0 +1,1 @@
+The goal of the Transcendental folder is to contain all the assigned transcendental functions
