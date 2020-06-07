@@ -4,7 +4,8 @@
 ETERNITY is a team project spanning over the Summer 2020 semester. Indeed, the goal of this project is to create a calculator and develop multiple iterations while applying the knowledge we have acquired from COMP 354 (Introduction to Software Engineering).
 
 D1: Submit written report - June 8th, 2020
-D2: Class presentation - Hune 5th, 2020
+
+D2: Class presentation - June 5th, 2020
 
 ### Members:
 | Name | Assigned function |
