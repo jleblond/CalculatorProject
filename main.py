@@ -7,6 +7,7 @@
    """
 from Calculator import Transcendental
 
+exec(open("GUI/GUI.py").read())
 
 def static_driver():
     print("<------------------DRIVER------------------>\n")

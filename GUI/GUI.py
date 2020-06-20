@@ -4,6 +4,7 @@
 # import everything from tkinter module
 from tkinter import *
 from Calculator import Transcendental
+
 # globally declare the entry variable
 entry = ""
 fullEntry = ""
