@@ -6,8 +6,15 @@
    Driver for presentation purposes
    """
 from Calculator import Transcendental
+from Logger import Log
 
-exec(open("GUI/GUI.py").read())
+if __name__ == '__main__':
+    #Log.clearLog()
+    Log.start()
+    from GUI import GUI
+    Log.end()
+'''
+
 
 def static_driver():
     print("<------------------DRIVER------------------>\n")
@@ -127,3 +134,4 @@ while True:
 
 
 print("\nGoodbye")
+'''
