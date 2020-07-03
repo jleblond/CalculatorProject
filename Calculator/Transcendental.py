@@ -85,7 +85,7 @@ def power(fBase, fExponent):
 # formula based on: Beebe, N. H. (2017). 10.3.2. In The Mathematical-Function Computation Handbook: Programming Using the MathCW
 # Portable Software Library (pp. 287-290). Springer International Publishing. doi:https://doi-org.lib-ezproxy.concordia.ca/10.1007/978-3-319-64110-2
 # A simplified version of the formula is used here
-def log10(x): # Handle exceptional cases, return -1 until adding exceptions
+def log10(x):
     """ 
     Calculate
 
@@ -168,7 +168,7 @@ def MAD(numList):
 
 #   Computes the taylor series for Sin. Source = "https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions"
 def radSin(X):
-    X = X%(2*MathHelper.Pi())
+    X = X%(2*MathHelper.computePi())
     out = 0
     sign = -1
     for i in range(1, 100, 2):
@@ -190,7 +190,7 @@ def cos(X):
 
 #   Same concesp as Cos, converts radSin by inputing (X+(Pi/2))
 def radCos(X):
-    return radSin(X + (MathHelper.Pi()/2))
+    return radSin(X + (MathHelper.computePi()/2))
 
 
 def powTen(exp):

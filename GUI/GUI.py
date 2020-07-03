@@ -28,11 +28,15 @@ def press(eqValue):
 def funcPress(value, eqValue):
     # point out the global entry variable
     global entry, fullEntry
+
     # concatenation of string
+    # handling of the power function is tricky as we need to find the first argument for the function in fullEntry. For the time being, this function does not support chaining within other functions
+    #We find the last full number
     if eqValue == "^(":
+        #interate backards in fullEntry to find the last operator that is not defined in MathHelper or Transcendental
         for i in range(len(fullEntry) - 1, 0, -1):
             if fullEntry[len(fullEntry) - 1 - i] == '+' or fullEntry[len(fullEntry) - 1 - i] == '-' or fullEntry[len(fullEntry) - 1 - i] == '*' or fullEntry[len(fullEntry) - 1 - i] == '/':
-
+                #if found, use that as the first argument of the power function
                 s = fullEntry[len(fullEntry) - i:]
                 fullEntry = fullEntry[:len(fullEntry) - i]
                 fullEntry = fullEntry + str(value) + str(s) + ','
@@ -48,7 +52,6 @@ def funcPress(value, eqValue):
 
     # update the entry by using set method
     equation.set(entry)
-
 
 # Function to evaluate the final entry
 def equalpress():
@@ -314,8 +317,12 @@ try:
     gui.protocol("WM_DELETE_WINDOW", on_closing)'''
     # start the GUI
     gui.mainloop()
-except SyntaxError or ZeroDivisionError or ErrorHandling.IllegalArgumentError as e:
-    Log.errorETERNITY(e)
 
+# For Calculation related errors, display them in log.txt
+# For other errors, specifically to GUI design related errors, system will crash
+except SyntaxError or ZeroDivisionError or ErrorHandling.IllegalArgumentError as e:
+    Log.errorCalc(e)
+except ErrorHandling.NotSupportedError as e:
+    Log.errorETERNITY(e)
 except Exception as e:
     Log.criticalETERNITY(e)
