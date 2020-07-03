@@ -5,8 +5,8 @@ from tkinter import messagebox
 
 def start():
     try:
-        fo = open("log.txt", 'a')
-        fo.write("Starting Application: "+str(datetime.now())+"\n")
+        fo = open("log.txt", 'a', encoding = "utf-8")
+        fo.write(str(datetime.now()) + " - Starting Application:\n")
         fo.close()
     except FileNotFoundError as e:
         errorETERNITY(e)
@@ -17,8 +17,8 @@ def start():
 
 def end():
     try:
-        fo = open("log.txt", 'a')
-        fo.write("Closing Application: " + str(datetime.now()) + "\n")
+        fo = open("log.txt", 'a', encoding = "utf-8")
+        fo.write(str(datetime.now()) + " - Closing Application\n")
         fo.close()
     except FileNotFoundError as e:
         errorETERNITY(e)
@@ -30,8 +30,8 @@ def end():
 
 def stdEntry(line):
     try:
-        fo = open("log.txt", 'a')
-        fo.write(str(line) + " at " + str(datetime.now()) + "\n")
+        fo = open("log.txt", 'a', encoding = "utf-8")
+        fo.write(str(datetime.now()) + " - " + str(line) + "\n")
         fo.close()
     except FileNotFoundError as e:
         errorETERNITY(e)
@@ -42,8 +42,8 @@ def stdEntry(line):
 
 def successCalc(entry, total):
     try:
-        fo = open("log.txt", 'a')
-        fo.write("SUCCESS - USER: "+entry+" = "+total+ " at " + str(datetime.now())+"\n")
+        fo = open("log.txt", 'a', encoding = "utf-8")
+        fo.write(str(datetime.now()) + " - SUCCESS - USER: "+entry+" = "+ total + "\n")
         fo.close()
     except FileNotFoundError as e:
         errorETERNITY(e)
@@ -54,8 +54,8 @@ def successCalc(entry, total):
 
 def errorCalc(entry, e):
     try:
-        fo = open("log.txt", 'a')
-        fo.write("ERROR - USER: " + entry + " : " + str(e.args[0]) + " at " + str(datetime.now()) + "\n")
+        fo = open("log.txt", 'a', encoding = "utf-8")
+        fo.write(str(datetime.now()) + " - ERROR - USER: " + entry + " : " + str(e.args[0]) + "\n")
         fo.close()
     except FileNotFoundError as e:
         errorETERNITY(e)
@@ -66,8 +66,8 @@ def errorCalc(entry, e):
 
 def errorETERNITY(e):
     try:
-        fo = open("log.txt", 'a')
-        fo.write("ERROR - SYSTEM/ETERNITY: " + str(e.args[0]) + " at " + str(datetime.now()) + "\n")
+        fo = open("log.txt", 'a', encoding = "utf-8")
+        fo.write(str(datetime.now()) + " - ERROR - SYSTEM/ETERNITY: " + str(e.args[0]) + "\n")
         fo.close()
     except:
         criticalETERNITY(e, "Unknown Error, ETERNITY will attempt to create an error log and terminate")

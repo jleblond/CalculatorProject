@@ -9,6 +9,7 @@ Contains the transcendental functions required for the operation of the ETERNITY
 7. cosh(x)
 """
 import MathHelper
+from Logger import ErrorHandling
 
 def power(fBase, fExponent):
     """ 
@@ -91,12 +92,12 @@ def log10(x): # Handle exceptional cases, return -1 until adding exceptions
     Date: May 25th 2020
     Author: Alexis Laurens-Renner - 40055137
     Transcendental function: log10(x)
-    """
+"""
+
+    if (x <= 0):
+        raise ErrorHandling.IllegalArgumentError(x, 'log10(x)', "log10() is undefined for x = " + str(x))
     if (x == 1):
         return 0
-    if (x <= 0):
-        return "NaN"
-
     n = 0  # Start exponent of base 10
 
     while (x >= 1.0):

@@ -1,11 +1,10 @@
-# Python program to  create a simple GUI
-# calculator using Tkinter
-
 # import everything from tkinter module
 from tkinter import *
 
 from Calculator import Transcendental
-from Logger import Log
+from MathHelper import MathHelper
+
+from Logger import Log, ErrorHandling
 
 # globally declare the entry variable
 entry = ""
@@ -295,6 +294,17 @@ try:
     coma.grid(row = 5, column = 2)
     gui.bind(',', lambda event: press(', '))
 
+    displayPi = Button(gui, text = ' \u03C0 ', fg = 'black', bg = 'white', command = lambda: funcPress("MathHelper.computePi()","\u03C0"), height = 1,
+                       width = 7)
+    displayPi.grid(row = 6, column = 4)
+    #gui.bind(']', lambda event: press(']'))
+
+    sqrt = Button(gui, text = ' \u221A ', fg = 'black', bg = 'white', command = lambda: funcPress("MathHelper.square_root(", "\u221A("), height = 1,
+                       width = 7)
+    sqrt.grid(row = 6, column = 5)
+    #gui.bind(']', lambda event: press(']'))
+
+
     gui.bind('<Escape>', lambda event: gui.iconify())
 
 
@@ -304,5 +314,8 @@ try:
     gui.protocol("WM_DELETE_WINDOW", on_closing)'''
     # start the GUI
     gui.mainloop()
+except SyntaxError or ZeroDivisionError or ErrorHandling.IllegalArgumentError as e:
+    Log.errorETERNITY(e)
+
 except Exception as e:
     Log.criticalETERNITY(e)
