@@ -1,21 +1,21 @@
-"""
-   Driver
+'''
+Driver
 
-   Date: June 4th 2020
-   Author: Alexis Laurens-Renner - 40055137
-   Driver for presentation purposes
-   """
-from Calculator import Transcendental
-from Logger import Log
+Date: June 4th 2020
+Author: Alexis Laurens-Renner - 40055137
+Driver for presentation purposes
+'''
+import app.util.log as log
+
 
 if __name__ == '__main__':
     #Log.clearLog()
-    Log.start()
-    from GUI import GUI
-    Log.end()
+    log.start()
+    import app.gui.gui
+    log.end()
+
+
 '''
-
-
 def static_driver():
     print("<------------------DRIVER------------------>\n")
     print("x^y examples:")

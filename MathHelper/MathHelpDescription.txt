@@ -1,1 +1,0 @@
-The goal of the MathHelper folder is to contain all the basic math operations

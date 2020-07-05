@@ -1,1 +1,0 @@
-from Calculator.Transcendental import *

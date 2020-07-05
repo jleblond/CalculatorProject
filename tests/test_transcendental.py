@@ -1,8 +1,9 @@
 import unittest
-import math
 import statistics
-from Calculator import *
-from MathHelper import *
+import math
+import app.util.errors as errors
+from app.math.transcendental import *
+from app.math.math_helper import *
 
 
 # tests cosh function from calculator.transcendental
@@ -42,7 +43,7 @@ class TestCosh(unittest.TestCase):
         self.assertEqual(0, 0) # temporarily replaced, because otherwise this test is failing
 
     def test_transcendental_nb(self):
-        self.assertEqual(format(cosh(computePi()), ACCURACY_DIGITS), format(math.cosh(math.pi), ACCURACY_DIGITS))
+        self.assertEqual(format(cosh(compute_pi()), ACCURACY_DIGITS), format(math.cosh(math.pi), ACCURACY_DIGITS))
 
     def test_zero(self):
         self.assertEqual(format(cosh(0), ACCURACY_DIGITS), format(float(1), ACCURACY_DIGITS))
@@ -81,9 +82,9 @@ class TestLog10(unittest.TestCase):
 
     def test_log10_neg(self):
         x = -1
-        self.assertRaises(ErrorHandling.IllegalArgumentError, log10, x)
+        self.assertRaises(errors.IllegalArgumentError, log10, x)
         x = 0
-        self.assertRaises(ErrorHandling.IllegalArgumentError, log10, x)
+        self.assertRaises(errors.IllegalArgumentError, log10, x)
 
 if __name__ == '__main__':
     unittest.main()
