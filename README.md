@@ -38,3 +38,10 @@ D2: Class presentation - June 5th, 2020
 
 ### `Logger` sub-package
 `TODO`
+
+
+
+## Tests
+Instructions to run all unit tests:
+```
+$ python -m unittest discover tests
