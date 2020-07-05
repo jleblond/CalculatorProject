@@ -63,6 +63,27 @@ class TestStandardDeviation(unittest.TestCase):
         self.assertEqual(rounded_std_deviation, rounded_math_stdev)
 
 
+class TestLog10(unittest.TestCase):
+    """
+        Test custom Transcendental log10(x) function result over math.log10(x) result
+
+        Date: 2020-07-05
+        Author: Alexis Laurens-Renner 40055137
+        Transcendental function: log10(x)
+        """
+    def test_log10(self):
+        x = 1000
+        while x >0:
+            rounded_log10 = round(log10(x), 6)
+            rounded_math_log10 = round(math.log10(x), 6)
+            self.assertEqual(rounded_log10, rounded_math_log10)
+            x -= 0.1
+
+    def test_log10_neg(self):
+        x = -1
+        self.assertRaises(ErrorHandling.IllegalArgumentError, log10, x)
+        x = 0
+        self.assertRaises(ErrorHandling.IllegalArgumentError, log10, x)
 
 if __name__ == '__main__':
     unittest.main()
