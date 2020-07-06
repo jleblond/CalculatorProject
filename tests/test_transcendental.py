@@ -1,8 +1,9 @@
 import unittest
-import math
 import statistics
-from Calculator import *
-from MathHelper import *
+import math
+import app.util.errors as errors
+from app.math.transcendental import *
+from app.math.math_helper import *
 
 
 # tests cosh function from calculator.transcendental
@@ -15,34 +16,35 @@ REALLY_SMALL_NUMBER = 0.0000000001
 
 class TestCosh(unittest.TestCase):
     def test_high(self):
+        # as x -> +infty, y -> +infty
         x = 0
         y1 = cosh(x)
         y2 = math.cosh(x)
         difference = format(y1, ACCURACY_DIGITS) == format(y2, ACCURACY_DIGITS)
         while difference:
-            x += 0.1
+            x += 1.3
             y1 = cosh(x)
             y2 = math.cosh(x)
             difference = format(y1, ACCURACY_DIGITS) == format(y2, ACCURACY_DIGITS)
-        print(f'maximum within error threshold: x={x}, cosh(x)={y1}, expected cosh(x)={y2}')
+        #print(f'maximum within error threshold: x={x}, cosh(x)={y1}, expected cosh(x)={y2}')
         self.assertGreater(y2, REALLY_LARGE_NUMBER)
 
     def test_low(self):
+        # as x -> -infty, y -> +infty
         x = 0
         y1 = cosh(x)
         y2 = math.cosh(x)
         difference = format(y1, ACCURACY_DIGITS) == format(y2, ACCURACY_DIGITS)
         while difference:
-            x -= 0.1
+            x -= 1.3
             y1 = cosh(x)
             y2 = math.cosh(x)
             difference = format(y1, ACCURACY_DIGITS) == format(y2, ACCURACY_DIGITS)
-        print(f'minimum within error threshold: x={x}, cosh(x)={y1}, expected cosh(x)={y2}')
-        #self.assertLess(y2, REALLY_SMALL_NUMBER)
-        self.assertEqual(0, 0) # temporarily replaced, because otherwise this test is failing
+        #print(f'minimum within error threshold: x={x}, cosh(x)={y1}, expected cosh(x)={y2}')
+        self.assertGreater(y2, REALLY_LARGE_NUMBER)
 
     def test_transcendental_nb(self):
-        self.assertEqual(format(cosh(computePi()), ACCURACY_DIGITS), format(math.cosh(math.pi), ACCURACY_DIGITS))
+        self.assertEqual(format(cosh(compute_pi()), ACCURACY_DIGITS), format(math.cosh(math.pi), ACCURACY_DIGITS))
 
     def test_zero(self):
         self.assertEqual(format(cosh(0), ACCURACY_DIGITS), format(float(1), ACCURACY_DIGITS))
@@ -81,9 +83,9 @@ class TestLog10(unittest.TestCase):
 
     def test_log10_neg(self):
         x = -1
-        self.assertRaises(ErrorHandling.IllegalArgumentError, log10, x)
+        self.assertRaises(errors.IllegalArgumentError, log10, x)
         x = 0
-        self.assertRaises(ErrorHandling.IllegalArgumentError, log10, x)
+        self.assertRaises(errors.IllegalArgumentError, log10, x)
 
 if __name__ == '__main__':
     unittest.main()

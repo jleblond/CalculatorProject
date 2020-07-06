@@ -1,15 +1,14 @@
 # import everything from tkinter module
 from tkinter import *
-
-from Calculator import Transcendental
-from MathHelper import MathHelper
-
-from Logger import Log, ErrorHandling
+import app.math as transcendental
+import app.math.math_helper as math_helper
+import app.util.log as log
+import app.util.errors as errors
 
 # globally declare the entry variable
-entry = ""
-fullEntry = ""
-ans = ""
+entry = ''
+fullEntry = ''
+ans = ''
 
 
 # Function to update entry
@@ -32,8 +31,8 @@ def funcPress(value, eqValue):
     # concatenation of string
     # handling of the power function is tricky as we need to find the first argument for the function in fullEntry. For the time being, this function does not support chaining within other functions
     #We find the last full number
-    if eqValue == "^(":
-        #interate backards in fullEntry to find the last operator that is not defined in MathHelper or Transcendental
+    if eqValue == '^(':
+        #interate backards in fullEntry to find the last operator that is not defined in MathHelper or transcendental
         for i in range(len(fullEntry) - 1, 0, -1):
             if fullEntry[len(fullEntry) - 1 - i] == '+' or fullEntry[len(fullEntry) - 1 - i] == '-' or fullEntry[len(fullEntry) - 1 - i] == '*' or fullEntry[len(fullEntry) - 1 - i] == '/':
                 #if found, use that as the first argument of the power function
@@ -53,6 +52,7 @@ def funcPress(value, eqValue):
     # update the entry by using set method
     equation.set(entry)
 
+
 # Function to evaluate the final entry
 def equalpress():
     # Try and except statement is used
@@ -61,8 +61,6 @@ def equalpress():
     # Put that code inside the try block
     # which may generate the error
     try:
-
-
         complete()
         # eval function evaluate the entry
         # and str function convert the result
@@ -72,41 +70,41 @@ def equalpress():
         total = str(eval(fullEntry))
 
         equation.set(total)
-        ins = entry + " =  " + total
+        ins = entry + ' =  ' + total
         while len(ins) > 25:
             lst.insert(END, ins[0:25])
             ins = ins[25:len(ins)]
         lst.insert(END, ins)
         lst.yview(END)
         ans = total
-        Log.successCalc(entry,total)
+        log.success_calc(entry,total)
         # initialize the entry variable
         # by empty string
-        entry = ""
-        fullEntry = ""
+        entry = ''
+        fullEntry = ''
 
     # if error is generate then handle
     # by the except block
     except Exception as e:
-        ins = entry + " = Error - " + str(e.args[0])
+        ins = entry + ' = Error - ' + str(e.args[0])
         while len(ins) > 25:
             lst.insert(END, ins[0:25])
             ins = ins[25:len(ins)]
         lst.insert(END, ins)
         lst.yview(END)
-        Log.errorCalc(entry, e)
-        equation.set(" Error ")
-        entry = ""
-        fullEntry = ""
+        log.error_calc(entry, e)
+        equation.set(' Error ')
+        entry = ''
+        fullEntry = ''
 
 
 # Function to clear the contents
 # of text entry box
 def clear():
     global entry, fullEntry
-    entry = ""
-    fullEntry = ""
-    equation.set("")
+    entry = ''
+    fullEntry = ''
+    equation.set('')
 
 
 def complete():
@@ -136,8 +134,6 @@ def complete():
         fullEntry = fullEntry + ')'
 
 
-
-
 try:
     # Driver code
     # create a GUI window
@@ -145,10 +141,10 @@ try:
     lst = Listbox(gui, width = 25)
     lst.grid(row = 0, column = 7, rowspan=7)
     # set the background colour of GUI window
-    gui.configure(background = "light blue")
+    gui.configure(background = 'light blue')
     gui.resizable(0, 0)
     # set the title of GUI window
-    gui.title("ETERNITY")
+    gui.title('ETERNITY')
 
     # StringVar() is the variable class
     # we create an instance of this class
@@ -180,19 +176,19 @@ try:
     button3.grid(row = 2, column = 2)
     gui.bind('3', lambda event: press(3))
 
-    plus = Button(gui, text = ' + ', fg = 'black', bg = 'white', command = lambda: press("+"), height = 1, width = 7)
+    plus = Button(gui, text = ' + ', fg = 'black', bg = 'white', command = lambda: press('+'), height = 1, width = 7)
     plus.grid(row = 2, column = 3)
     gui.bind('+', lambda event: press('+'))
 
     log10 = Button(gui, text = ' log10( ', fg = 'black', bg = 'white',
-                   command = lambda: funcPress("Transcendental.log10(", "log10("), height = 1, width = 7)
+                   command = lambda: funcPress('transcendental.log10(', 'log10('), height = 1, width = 7)
     log10.grid(row = 4, column = 5)
-    gui.bind('<Control-l>', lambda event: funcPress("Transcendental.log10(", "log10("))
+    gui.bind('<Control-l>', lambda event: funcPress('transcendental.log10(', 'log10('))
 
     mad = Button(gui, text = ' MAD([ ', fg = 'black', bg = 'white',
-                 command = lambda: funcPress("Transcendental.MAD([", "MAD(["), height = 1, width = 7)
+                 command = lambda: funcPress('transcendental.MAD([', 'MAD(['), height = 1, width = 7)
     mad.grid(row = 2, column = 5)
-    gui.bind('<Control-m>', lambda event: funcPress("Transcendental.MAD([", "MAD(["))
+    gui.bind('<Control-m>', lambda event: funcPress('transcendental.MAD([', 'MAD(['))
 
     button4 = Button(gui, text = ' 4 ', fg = 'black', bg = 'white', command = lambda: press(4), height = 1, width = 7)
     button4.grid(row = 3, column = 0)
@@ -206,19 +202,19 @@ try:
     button6.grid(row = 3, column = 2)
     gui.bind('6', lambda event: press('6'))
 
-    minus = Button(gui, text = ' - ', fg = 'black', bg = 'white', command = lambda: press("-"), height = 1, width = 7)
+    minus = Button(gui, text = ' - ', fg = 'black', bg = 'white', command = lambda: press('-'), height = 1, width = 7)
     minus.grid(row = 3, column = 3)
     gui.bind('-', lambda event: press('-'))
 
     sinx = Button(gui, text = ' sin( ', fg = 'black', bg = 'white',
-                  command = lambda: funcPress("Transcendental.sin(", "sin("), height = 1, width = 7)
+                  command = lambda: funcPress('transcendental.sin(', 'sin('), height = 1, width = 7)
     sinx.grid(row = 3, column = 4)
-    gui.bind('<Control-s>', lambda event: funcPress("Transcendental.sin(", "sin("))
+    gui.bind('<Control-s>', lambda event: funcPress('transcendental.sin(', 'sin('))
 
     sd = Button(gui, text = ' SD([ ', fg = 'black', bg = 'white',
-                command = lambda: funcPress("Transcendental.standard_deviation([", "SD(["), height = 1, width = 7)
+                command = lambda: funcPress('transcendental.standard_deviation([', 'SD(['), height = 1, width = 7)
     sd.grid(row = 3, column = 5)
-    gui.bind('<Control-Alt-s>', lambda event: funcPress("Transcendental.standard_deviation([", "SD(["))
+    gui.bind('<Control-Alt-s>', lambda event: funcPress('transcendental.standard_deviation([', 'SD(['))
 
     button7 = Button(gui, text = ' 7 ', fg = 'black', bg = 'white', command = lambda: press(7), height = 1, width = 7)
     button7.grid(row = 4, column = 0)
@@ -232,14 +228,14 @@ try:
     button9.grid(row = 4, column = 2)
     gui.bind('9', lambda event: press(9))
 
-    multiply = Button(gui, text = ' * ', fg = 'black', bg = 'white', command = lambda: press("*"), height = 1, width = 7)
+    multiply = Button(gui, text = ' * ', fg = 'black', bg = 'white', command = lambda: press('*'), height = 1, width = 7)
     multiply.grid(row = 4, column = 3)
     gui.bind('*', lambda event: press('*'))
 
     cosh = Button(gui, text = ' cosh( ', fg = 'black', bg = 'white',
-                  command = lambda: funcPress("Transcendental.cosh(", "cosh("), height = 1, width = 7)
+                  command = lambda: funcPress('transcendental.cosh(', 'cosh('), height = 1, width = 7)
     cosh.grid(row = 4, column = 4)
-    gui.bind('<Control-c>', lambda event: funcPress("Transcendental.cosh(", "cosh("))
+    gui.bind('<Control-c>', lambda event: funcPress('transcendental.cosh(', 'cosh('))
 
     button0 = Button(gui, text = ' 0 ', fg = 'black', bg = 'white', command = lambda: press(0), height = 1, width = 7)
     button0.grid(row = 5, column = 1)
@@ -254,20 +250,20 @@ try:
     gui.bind('=', lambda event: equalpress())
     gui.bind('<Return>', lambda event: equalpress())
 
-    divide = Button(gui, text = ' / ', fg = 'black', bg = 'white', command = lambda: press("/"), height = 1, width = 7)
+    divide = Button(gui, text = ' / ', fg = 'black', bg = 'white', command = lambda: press('/'), height = 1, width = 7)
     divide.grid(row = 5, column = 3)
     gui.bind('/', lambda event: press('/'))
 
     power10 = Button(gui, text = ' 10^( ', fg = 'black', bg = 'white',
-                     command = lambda: funcPress("Transcendental.powTen(", "10^("), height = 1, width = 7)
+                     command = lambda: funcPress('transcendental.powTen(', '10^('), height = 1, width = 7)
     power10.grid(row = 5, column = 4)
-    gui.bind('<Control-Alt-p>', lambda event: funcPress("Transcendental.powTen(", "10^("))
+    gui.bind('<Control-Alt-p>', lambda event: funcPress('transcendental.powTen(', '10^('))
 
     power = Button(gui, text = ' ^ ', fg = 'black', bg = 'white',
-                   command = lambda: funcPress("Transcendental.power(", "^("), height = 1, width = 7)
+                   command = lambda: funcPress('transcendental.power(', '^('), height = 1, width = 7)
     power.grid(row = 5, column = 5)
-    gui.bind('<Control-p>', lambda event: funcPress("Transcendental.power(", "^("))
-    gui.bind('^', lambda event: funcPress("Transcendental.power(", "^("))
+    gui.bind('<Control-p>', lambda event: funcPress('transcendental.power(', '^('))
+    gui.bind('^', lambda event: funcPress('transcendental.power(', '^('))
 
     Decimal = Button(gui, text = '.', fg = 'black', bg = 'white', command = lambda: press('.'), height = 1, width = 7)
     Decimal.grid(row = 5, column = 0)
@@ -297,12 +293,12 @@ try:
     coma.grid(row = 5, column = 2)
     gui.bind(',', lambda event: press(', '))
 
-    displayPi = Button(gui, text = ' \u03C0 ', fg = 'black', bg = 'white', command = lambda: funcPress("MathHelper.computePi()","\u03C0"), height = 1,
+    displayPi = Button(gui, text = ' \u03C0 ', fg = 'black', bg = 'white', command = lambda: funcPress('math_helper.compute_pi()','\u03C0'), height = 1,
                        width = 7)
     displayPi.grid(row = 6, column = 4)
     #gui.bind(']', lambda event: press(']'))
 
-    sqrt = Button(gui, text = ' \u221A ', fg = 'black', bg = 'white', command = lambda: funcPress("MathHelper.square_root(", "\u221A("), height = 1,
+    sqrt = Button(gui, text = ' \u221A ', fg = 'black', bg = 'white', command = lambda: funcPress('math_helper.square_root(', '\u221A('), height = 1,
                        width = 7)
     sqrt.grid(row = 6, column = 5)
     #gui.bind(']', lambda event: press(']'))
@@ -310,19 +306,19 @@ try:
 
     gui.bind('<Escape>', lambda event: gui.iconify())
 
-
-
-    ''''def on_closing():
+    ''''
+    def on_closing():
         gui.destroy()
-    gui.protocol("WM_DELETE_WINDOW", on_closing)'''
+    gui.protocol('WM_DELETE_WINDOW', on_closing)
+    '''
     # start the GUI
     gui.mainloop()
 
 # For Calculation related errors, display them in log.txt
 # For other errors, specifically to GUI design related errors, system will crash
-except SyntaxError or ZeroDivisionError or ErrorHandling.IllegalArgumentError as e:
-    Log.errorCalc(e)
-except ErrorHandling.NotSupportedError as e:
-    Log.errorETERNITY(e)
+except (SyntaxError, ZeroDivisionError, errors.IllegalArgumentError) as e:
+    log.error_calc('', e)
+except errors.NotSupportedError as e:
+    log.error_eternity(e)
 except Exception as e:
-    Log.criticalETERNITY(e)
+    log.critical_eternity(e)
