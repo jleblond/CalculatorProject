@@ -1,6 +1,7 @@
 import unittest
 import statistics
 import math
+import pandas
 import app.util.errors as errors
 from app.math.transcendental import *
 from app.math.math_helper import *
@@ -86,6 +87,24 @@ class TestLog10(unittest.TestCase):
         self.assertRaises(errors.IllegalArgumentError, log10, x)
         x = 0
         self.assertRaises(errors.IllegalArgumentError, log10, x)
+
+class TestMAD(unittest.TestCase):
+    """
+    Test custom Mean Abosolute Deviation (MAD) function over pandas.Series().mad()
+
+    Date: 2020-07-07
+    Author: Jeffrey Lam Yuk Tseung
+    Transcendental function: Mean Aboslute Deviation ()
+    """
+    def test_mad(self):
+        test_arr = [5, 12, 1, 0, 4, 22, 15, 3, 9] 
+
+        rounded_result = round(MAD(test_arr))
+
+        pandas_series = pandas.Series(test_arr)
+        rounded_pandas_result = round(pandas_series.mad())
+
+        self.assertEqual(rounded_result, rounded_pandas_result)
 
 if __name__ == '__main__':
     unittest.main()
