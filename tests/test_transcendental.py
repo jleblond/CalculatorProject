@@ -52,13 +52,13 @@ class TestCosh(unittest.TestCase):
 
 
 class TestStandardDeviation(unittest.TestCase):
-    """
+    '''
     Test custom Transcendental Standard Deviation function result over statistics.stdev result
 
     Date: 2020-07-05
     Author: Jasmine Leblond-Chartrand
     Transcendental function: σ (Standard Deviation)
-    """
+    '''
     def test_standard_deviation(self):
         test_arr = [0, 9, 10, 345, 903]
         rounded_std_deviation = round(standard_deviation(test_arr), 6)
@@ -67,13 +67,13 @@ class TestStandardDeviation(unittest.TestCase):
 
 
 class TestLog10(unittest.TestCase):
-    """
-        Test custom Transcendental log10(x) function result over math.log10(x) result
+    '''
+    Test custom Transcendental log10(x) function result over math.log10(x) result
 
-        Date: 2020-07-05
-        Author: Alexis Laurens-Renner 40055137
-        Transcendental function: log10(x)
-        """
+    Date: 2020-07-05
+    Author: Alexis Laurens-Renner 40055137
+    Transcendental function: log10(x)
+    '''
     def test_log10(self):
         x = 1000
         while x >0:
@@ -89,21 +89,18 @@ class TestLog10(unittest.TestCase):
         self.assertRaises(errors.IllegalArgumentError, log10, x)
 
 class TestMAD(unittest.TestCase):
-    """
+    '''
     Test custom Mean Abosolute Deviation (MAD) function over pandas.Series().mad()
 
     Date: 2020-07-07
     Author: Jeffrey Lam Yuk Tseung
     Transcendental function: Mean Aboslute Deviation ()
-    """
+    '''
     def test_mad(self):
         test_arr = [5, 12, 1, 0, 4, 22, 15, 3, 9] 
-
         rounded_result = round(MAD(test_arr))
-
         pandas_series = pandas.Series(test_arr)
         rounded_pandas_result = round(pandas_series.mad())
-
         self.assertEqual(rounded_result, rounded_pandas_result)
 
 if __name__ == '__main__':
