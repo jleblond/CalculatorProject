@@ -13,7 +13,6 @@ required for the operation of the ETERNITY calculator.
 import app.math.math_helper as math_helper
 import app.util.errors as errors
 
-
 def power(base, exponent):
     ''' 
     Calculate the power of the first number raised to the second number.        
