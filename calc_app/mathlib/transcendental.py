@@ -184,7 +184,7 @@ def cos(x):
     return sin(x + 90)
 
 
-def powTen(exp):
+def pow_ten(exp):
     '''
     Calculates Exponent 10
 

@@ -1,25 +1,9 @@
 # import everything from tkinter module
 from tkinter import *
-import app.math as transcendental
-import app.math.math_helper as math_helper
-import app.util.log as log
-import app.util.errors as errors
-
-class CalculatorModel:
-    def __init__(self):
-        self.entry = ''
-        self.full_entry = ''
-        self.ans = ''
-
-class CalculatorController:
-    def __init__(self, model, view):
-        self.model = model
-        self.view = view
-
-    def value_pressed(self, value):
-        self.model.full_entry = self.model.full_entry + str(value)
-        self.model.entry = self.model.entry + str(value)
-
+import calc_app.mathlib.transcendental as transcendental
+import calc_app.mathlib.math_helper as math_helper
+import calc_app.util.log as log
+import calc_app.util.errors as errors
 
 # globally declare the entry variable
 entry = ''
@@ -149,75 +133,52 @@ def complete():
         entry = entry + ')'
         fullEntry = fullEntry + ')'
 
-class CalculatorView:
-    def __init__(self):
-        # main window
-        self.gui = Tk()
-        self.gui.title('ETERNITY')
-        self.gui.configure(bg='light blue')
-        self.gui.resizable(0,0)
-
-        # listbox on the side
-        self.lst = Listbox(self.gui, width=25)
-        self.lst.grid(row=0, column=7, rowspan=7)
-
-        # textbox for inputs
-        self.equation = StringVar()
-        #self.equation.set('0')
-        entry_field = Entry(self.gui, textvariable=self.equation)
-        entry_field.grid(row=0, columnspan=4, ipadx=54)
-
-        # numeric input buttons
-        self.add_numeric_buttons()
-
-        # auxilary buttons
-        self.add_value_button(' . ', 5, 0, press, '.', '.')
-        self.add_value_button(' , ', 5, 2, press, ',', ',')
-        self.add_value_button(' ( ', 6, 0, press, '(', '(')
-        self.add_value_button(' ) ', 6, 1, press, ')', ')')
-        #self.add_value_button(' [ ', 6, 2, press, '[', '[')
-        #self.add_value_button(' [ ', 6, 3, press, ']', ']')
-
-        # basic operands
-        self.add_value_button(' + ', 2, 3, press, '+', '+')
-        self.add_value_button(' - ', 3, 3, press, '-', '-')
-        self.add_value_button(' * ', 4, 3, press, '*', '*')
-        self.add_value_button(' / ', 5, 3, press, '/', '/')
-
-        # transcendental
-        self.add_value_button('')
-
-
-    def add_value_button(self, text, row, column, command, event, *command_args):
-        '''
-        helper method - adds a button with predefined specifications
-        
-        - text: str - label on the button
-        - row: int - horizontal location of the button
-        - column: int - vertical location of the button
-        - command: func - to be executed upon press
-        - event: str - tkinter keyboard command associated with this button
-        - *command_args - variable length arguments for command.
-        '''
-        button = Button(self.gui, text=text, fg='black', bg='white', command=lambda: command(*command_args), height = 1, width = 7)
-        button.grid(row=row, column=column)
-        print(event, command, *command_args)
-        self.gui.bind(event, lambda: command(*command_args))
-    
-
-    def add_numeric_buttons(self):
-        '''
-        helper method: adds 0 ~ 9 buttons.
-        '''
-        for i in range(1, 10):
-            row_index = ((i - 1) // 3) + 2
-            column_index = (i + 2) % 3
-            print(i, row_index, column_index)
-            self.add_value_button(f' {i} ', row_index, column_index, press, str(i), str(i))
-        self.add_value_button(' 0 ', 5, 1, press, '0', '0')
-        
 
 try:
+    # Driver code
+    # create a GUI window
+    gui = Tk()
+    lst = Listbox(gui, width = 25)
+    lst.grid(row = 0, column = 7, rowspan=7)
+    # set the background colour of GUI window
+    gui.configure(background = 'light blue')
+    gui.resizable(0, 0)
+    # set the title of GUI window
+    gui.title('ETERNITY')
+
+    # StringVar() is the variable class
+    # we create an instance of this class
+    equation = StringVar()
+    # create the text entry box for
+    # showing the entry .
+    entry_field = Entry(gui, textvariable = equation)
+
+    # grid method is used for placing
+    # the widgets at respective positions
+    # in table like structure .
+    entry_field.grid(row = 0, columnspan = 4, ipadx = 54)
+
+    equation.set('0')
+
+    # create a Buttons and place at a particular
+    # location inside the root window .
+    # when user press the button, the command or
+    # function affiliated to that button is executed .
+    button1 = Button(gui, text = ' 1 ', fg = 'black', bg = 'white', command = lambda: press(1), height = 1, width = 7)
+    button1.grid(row = 2, column = 0)
+    gui.bind('1', lambda event: press(1))
+
+    button2 = Button(gui, text = ' 2 ', fg = 'black', bg = 'white', command = lambda: press(2), height = 1, width = 7)
+    button2.grid(row = 2, column = 1)
+    gui.bind('2', lambda event: press(2))
+
+    button3 = Button(gui, text = ' 3 ', fg = 'black', bg = 'white', command = lambda: press(3), height = 1, width = 7)
+    button3.grid(row = 2, column = 2)
+    gui.bind('3', lambda event: press(3))
+
+    plus = Button(gui, text = ' + ', fg = 'black', bg = 'white', command = lambda: press('+'), height = 1, width = 7)
+    plus.grid(row = 2, column = 3)
+    gui.bind('+', lambda event: press('+'))
 
     log10 = Button(gui, text = ' log10( ', fg = 'black', bg = 'white',
                    command = lambda: funcPress('transcendental.log10(', 'log10('), height = 1, width = 7)
@@ -229,6 +190,22 @@ try:
     mad.grid(row = 2, column = 5)
     gui.bind('<Control-m>', lambda event: funcPress('transcendental.MAD([', 'MAD(['))
 
+    button4 = Button(gui, text = ' 4 ', fg = 'black', bg = 'white', command = lambda: press(4), height = 1, width = 7)
+    button4.grid(row = 3, column = 0)
+    gui.bind('4', lambda event: press(4))
+
+    button5 = Button(gui, text = ' 5 ', fg = 'black', bg = 'white', command = lambda: press(5), height = 1, width = 7)
+    button5.grid(row = 3, column = 1)
+    gui.bind('5', lambda event: press('5'))
+
+    button6 = Button(gui, text = ' 6 ', fg = 'black', bg = 'white', command = lambda: press(6), height = 1, width = 7)
+    button6.grid(row = 3, column = 2)
+    gui.bind('6', lambda event: press('6'))
+
+    minus = Button(gui, text = ' - ', fg = 'black', bg = 'white', command = lambda: press('-'), height = 1, width = 7)
+    minus.grid(row = 3, column = 3)
+    gui.bind('-', lambda event: press('-'))
+
     sinx = Button(gui, text = ' sin( ', fg = 'black', bg = 'white',
                   command = lambda: funcPress('transcendental.sin(', 'sin('), height = 1, width = 7)
     sinx.grid(row = 3, column = 4)
@@ -239,10 +216,30 @@ try:
     sd.grid(row = 3, column = 5)
     gui.bind('<Control-Alt-s>', lambda event: funcPress('transcendental.standard_deviation([', 'SD(['))
 
+    button7 = Button(gui, text = ' 7 ', fg = 'black', bg = 'white', command = lambda: press(7), height = 1, width = 7)
+    button7.grid(row = 4, column = 0)
+    gui.bind('7', lambda event: press(7))
+
+    button8 = Button(gui, text = ' 8 ', fg = 'black', bg = 'white', command = lambda: press(8), height = 1, width = 7)
+    button8.grid(row = 4, column = 1)
+    gui.bind('8', lambda event: press(8))
+
+    button9 = Button(gui, text = ' 9 ', fg = 'black', bg = 'white', command = lambda: press(9), height = 1, width = 7)
+    button9.grid(row = 4, column = 2)
+    gui.bind('9', lambda event: press(9))
+
+    multiply = Button(gui, text = ' * ', fg = 'black', bg = 'white', command = lambda: press('*'), height = 1, width = 7)
+    multiply.grid(row = 4, column = 3)
+    gui.bind('*', lambda event: press('*'))
+
     cosh = Button(gui, text = ' cosh( ', fg = 'black', bg = 'white',
                   command = lambda: funcPress('transcendental.cosh(', 'cosh('), height = 1, width = 7)
     cosh.grid(row = 4, column = 4)
     gui.bind('<Control-c>', lambda event: funcPress('transcendental.cosh(', 'cosh('))
+
+    button0 = Button(gui, text = ' 0 ', fg = 'black', bg = 'white', command = lambda: press(0), height = 1, width = 7)
+    button0.grid(row = 5, column = 1)
+    gui.bind('0', lambda event: press(0))
 
     clearButton = Button(gui, text = 'Clear', fg = 'black', bg = 'white', command = clear, height = 1, width = 7)
     clearButton.grid(row = 0, column = 5)
