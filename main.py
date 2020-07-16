@@ -5,13 +5,13 @@ Date: June 4th 2020
 Author: Alexis Laurens-Renner - 40055137
 Driver for presentation purposes
 '''
-import app.util.log as log
+import calc_app.util.log as log
 
 
 if __name__ == '__main__':
     #Log.clearLog()
     log.start()
-    import app.gui.gui
+    import calc_app.gui.gui
     log.end()
 
 

@@ -10,8 +10,8 @@ required for the operation of the ETERNITY calculator.
 7. cosh(x)
 '''
 
-import app.math.math_helper as math_helper
-import app.util.errors as errors
+import calc_app.mathlib.math_helper as math_helper
+import calc_app.util.errors as errors
 
 def power(base, exponent):
     ''' 

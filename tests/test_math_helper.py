@@ -1,5 +1,5 @@
 import unittest
-import app.math.math_helper as math_helper
+import calc_app.mathlib.math_helper as math_helper
 import math
 
 class TestMathHelper(unittest.TestCase):
