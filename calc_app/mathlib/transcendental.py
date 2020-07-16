@@ -192,7 +192,7 @@ def pow_ten(exp):
     Date: 2020-06-02
     '''
     return power(10, exp)
-# End function powTen
+# End function pow_ten
 
 
 def cosh(x):
