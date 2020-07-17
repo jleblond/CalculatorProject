@@ -210,5 +210,3 @@ def cosh(x):
 # End function cosh
 
 # End module Transcendental
-
-print(rad_sin(33))

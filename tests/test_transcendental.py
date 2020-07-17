@@ -180,7 +180,7 @@ class TestSin(unittest.TestCase):
         self.assertEqual(round(cust_sin,6), round(real_sin,6))
 
     def test_large_sin(self):
-        x = 1000000000
+        x = 400000000
         cust_sin = rad_sin(x)
         real_sin = math.sin(x)
         self.assertEqual(round(cust_sin,6), round(real_sin,6))
