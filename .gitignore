@@ -135,4 +135,4 @@ log.txt
 *.log
 
 
-.vscode
+/.vscode/
