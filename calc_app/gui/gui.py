@@ -1,9 +1,9 @@
 # import everything from tkinter module
 from tkinter import *
-import app.math as transcendental
-import app.math.math_helper as math_helper
-import app.util.log as log
-import app.util.errors as errors
+import calc_app.mathlib.transcendental as transcendental
+import calc_app.mathlib.math_helper as math_helper
+import calc_app.util.log as log
+import calc_app.util.errors as errors
 
 # globally declare the entry variable
 entry = ''
@@ -255,9 +255,9 @@ try:
     gui.bind('/', lambda event: press('/'))
 
     power10 = Button(gui, text = ' 10^( ', fg = 'black', bg = 'white',
-                     command = lambda: funcPress('transcendental.powTen(', '10^('), height = 1, width = 7)
+                     command = lambda: funcPress('transcendental.pow_ten(', '10^('), height = 1, width = 7)
     power10.grid(row = 5, column = 4)
-    gui.bind('<Control-Alt-p>', lambda event: funcPress('transcendental.powTen(', '10^('))
+    gui.bind('<Control-Alt-p>', lambda event: funcPress('transcendental.pow_ten(', '10^('))
 
     power = Button(gui, text = ' ^ ', fg = 'black', bg = 'white',
                    command = lambda: funcPress('transcendental.power(', '^('), height = 1, width = 7)

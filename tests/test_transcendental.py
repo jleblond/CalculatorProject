@@ -1,9 +1,9 @@
 import unittest
 import statistics
 import math
-import app.util.errors as errors
-from app.math.transcendental import *
-from app.math.math_helper import *
+import calc_app.util.errors as errors
+from calc_app.mathlib.transcendental import *
+from calc_app.mathlib.math_helper import *
 
 
 # tests cosh function from calculator.transcendental

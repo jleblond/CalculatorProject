@@ -10,8 +10,8 @@ required for the operation of the ETERNITY calculator.
 7. cosh(x)
 '''
 
-import app.math.math_helper as math_helper
-import app.util.errors as errors
+import calc_app.mathlib.math_helper as math_helper
+import calc_app.util.errors as errors
 
 def power(base, exponent):
     ''' 
@@ -184,7 +184,7 @@ def cos(x):
     return sin(x + 90)
 
 
-def powTen(exp):
+def pow_ten(exp):
     '''
     Calculates Exponent 10
 
@@ -192,7 +192,7 @@ def powTen(exp):
     Date: 2020-06-02
     '''
     return power(10, exp)
-# End function powTen
+# End function pow_ten
 
 
 def cosh(x):
