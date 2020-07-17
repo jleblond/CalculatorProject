@@ -158,5 +158,58 @@ class TestPower(unittest.TestCase):
         real_power = round(math.pow(x, y), 4)
         self.assertEqual(cust_power, real_power)
 
+class TestSin(unittest.TestCase):
+    """
+    Test custom Transcendental Sine function result over math.sin result
+
+    Date: 2020-07-12
+    Author: Roman Lewandowski (40062108)
+    Transcendental function: Sin(x)
+
+    """
+    def test_positive_sin(self):
+        x = 15
+        cust_sin = rad_sin(x)
+        real_sin = math.sin(x)
+        self.assertEqual(round(cust_sin,6), round(real_sin,6))
+
+    def test_negative_sin(self):
+        x = -45
+        cust_sin = rad_sin(x)
+        real_sin = math.sin(x)
+        self.assertEqual(round(cust_sin,6), round(real_sin,6))
+
+    def test_large_sin(self):
+        x = 1000000000
+        cust_sin = rad_sin(x)
+        real_sin = math.sin(x)
+        self.assertEqual(round(cust_sin,6), round(real_sin,6))
+
+    def test_small_sin(self):
+        x = 0.000000000012
+        cust_sin = rad_sin(x)
+        real_sin = math.sin(x)
+        self.assertEqual(round(cust_sin,6), round(real_sin,6))
+
+    def test_negative_sin(self):
+        x = -45
+        cust_sin = rad_sin(x)
+        real_sin = math.sin(x)
+        self.assertEqual(round(cust_sin,6), round(real_sin,6))
+
+    def test_zero_sin(self):
+        x = 0
+        cust_sin = rad_sin(x)
+        real_sin = math.sin(x)
+        self.assertEqual(round(cust_sin,6), round(real_sin,6))
+
+    def test_ninety_sin(self):
+        x = 90
+        cust_sin = rad_sin(x)
+        real_sin = math.sin(x)
+        self.assertEqual(round(cust_sin,6), round(real_sin,6))
+
+
+
 if __name__ == '__main__':
     unittest.main()

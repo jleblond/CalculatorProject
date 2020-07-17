@@ -203,10 +203,10 @@ def int_pow(x, y):
     '''
     Simple multiplication loop to serve as a power function for integer exponents
     '''
-    x = 1
-    for _ in range(1, y+1):
-        x *= x
-    return x
+    ret = 1
+    for i in range(1, y+1):
+        ret *= x
+    return ret
 
 
 def factorial_loop(x):

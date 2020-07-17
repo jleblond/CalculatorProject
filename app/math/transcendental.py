@@ -10,8 +10,9 @@ required for the operation of the ETERNITY calculator.
 7. cosh(x)
 '''
 
-import app.math.math_helper as math_helper
-import app.util.errors as errors
+import math
+from app.math import math_helper as math_helper
+from app.util import errors as errors
 
 def power(base, exponent):
     ''' 
@@ -159,10 +160,13 @@ def rad_sin(x):
     Computes the taylor series for Sin.
     Source: https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
     '''
-    x = x %(2 * math_helper.compute_pi())
+    if(x>0):
+        x = x %(2 * math_helper.compute_pi())
+    if(x<0):
+        x = (2 * math_helper.compute_pi() - (-x % (2 * math_helper.compute_pi())))
     out = 0
     sign = -1
-    for i in range(1, 100, 2):
+    for i in range(1, 150, 2):
         sign = -sign
         out += sign * math_helper.int_pow(x,i)/math_helper.factorial_loop(i)
     return out
@@ -206,3 +210,5 @@ def cosh(x):
 # End function cosh
 
 # End module Transcendental
+
+print(rad_sin(33))
