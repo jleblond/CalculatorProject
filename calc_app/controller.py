@@ -79,14 +79,32 @@ class Controller():
 
 
     def bind_keys(self):
-        for i in range(len(self.view.buttons)):
-            self.root.bind(str(i), lambda event: self.press(i))
+
+        self.root.bind('0', lambda event: self.press('0'))
+        self.root.bind('1', lambda event: self.press('1'))
+        self.root.bind('2', lambda event: self.press('2'))
+        self.root.bind('3', lambda event: self.press('3'))
+        self.root.bind('4', lambda event: self.press('4'))
+        self.root.bind('5', lambda event: self.press('5'))
+        self.root.bind('6', lambda event: self.press('6'))
+        self.root.bind('7', lambda event: self.press('7'))
+        self.root.bind('8', lambda event: self.press('8'))
+        self.root.bind('9', lambda event: self.press('9'))
 
         self.root.bind('<Escape>', lambda event: self.root.iconify())
 
-        keys_binded = [',', '.', '+', '-', '*', '/', '(', ')', '[', ']']
-        for i in range(len(keys_binded)):
-            self.root.bind(keys_binded[i], lambda event: self.press(keys_binded[i]))
+        
+        self.root.bind(',', lambda event: self.press(','))
+        self.root.bind('.', lambda event: self.press('.'))
+        self.root.bind('+', lambda event: self.press('+'))
+        self.root.bind('-', lambda event: self.press('-'))
+        self.root.bind('*', lambda event: self.press('*'))
+        self.root.bind('/', lambda event: self.press('/'))
+        self.root.bind('(', lambda event: self.press('('))
+        self.root.bind(')', lambda event: self.press(')'))
+        self.root.bind('[', lambda event: self.press('['))
+        self.root.bind(']', lambda event: self.press(']'))
+
 
         self.root.bind('<Return>', lambda event: self.equal_press())
         self.root.bind('<BackSpace>', lambda event: self.clear())
