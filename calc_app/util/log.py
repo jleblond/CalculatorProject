@@ -6,7 +6,7 @@ import traceback
 from datetime import datetime
 from tkinter import messagebox
 
-
+import pdb
 def start():
     try:
         fo = open("log.txt", 'a', encoding = "utf-8")
@@ -48,6 +48,7 @@ def std_entry(line):
 
 def success_calc(entry, total):
     try:
+
         fo = open("log.txt", 'a', encoding = "utf-8")
         fo.write(str(datetime.now()) + " - SUCCESS - USER: "+entry+" = "+ total + "\n")
         fo.close()
