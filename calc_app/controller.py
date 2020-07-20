@@ -32,21 +32,12 @@ class Controller():
         self.root.deiconify()
         self.root.mainloop()
 
-    def configure_commands(self):
-        # note: code unused because using a loop doesnt not seem to set config commands properly!
-        # for i in range(len(self.view.buttons)):
-        #     self.view.buttons[i].config(command=lambda: self.press(int(i)))
+    def config_button_press_nb(self, nb_pressed):
+        self.view.buttons[nb_pressed].config(command=lambda: self.press(nb_pressed))
 
-        self.view.buttons[0].config(command=lambda: self.press(0))
-        self.view.buttons[1].config(command=lambda: self.press(1))
-        self.view.buttons[2].config(command=lambda: self.press(2))
-        self.view.buttons[3].config(command=lambda: self.press(3))
-        self.view.buttons[4].config(command=lambda: self.press(4))
-        self.view.buttons[5].config(command=lambda: self.press(5))
-        self.view.buttons[6].config(command=lambda: self.press(6))
-        self.view.buttons[7].config(command=lambda: self.press(7))
-        self.view.buttons[8].config(command=lambda: self.press(8))
-        self.view.buttons[9].config(command=lambda: self.press(9))
+    def configure_commands(self):
+        for i in range(len(self.view.buttons)):
+            self.config_button_press_nb(i)
 
         self.view.plus.config(command=lambda: self.press('+'))
         self.view.minus.config(command=lambda: self.press('-'))
@@ -77,35 +68,19 @@ class Controller():
         self.view.clear_button.config(command=lambda: self.clear())
         self.view.equal.config(command=lambda: self.equal_press())
 
+    def bind_key_simple_button(self, button_value):
+        str_button_value = str(button_value)
+        self.root.bind(str_button_value, lambda event: self.press(str_button_value))
 
     def bind_keys(self):
+        for i in range(len(self.view.buttons)):
+            self.bind_key_simple_button(i)
 
-        self.root.bind('0', lambda event: self.press('0'))
-        self.root.bind('1', lambda event: self.press('1'))
-        self.root.bind('2', lambda event: self.press('2'))
-        self.root.bind('3', lambda event: self.press('3'))
-        self.root.bind('4', lambda event: self.press('4'))
-        self.root.bind('5', lambda event: self.press('5'))
-        self.root.bind('6', lambda event: self.press('6'))
-        self.root.bind('7', lambda event: self.press('7'))
-        self.root.bind('8', lambda event: self.press('8'))
-        self.root.bind('9', lambda event: self.press('9'))
+        simple_operator_keys = [',', '.', '+', '-', '*', '/', '(', ')', '[', ']']
+        for i in range(len(simple_operator_keys)):
+            self.bind_key_simple_button(simple_operator_keys[i])
 
         self.root.bind('<Escape>', lambda event: self.root.iconify())
-
-        
-        self.root.bind(',', lambda event: self.press(','))
-        self.root.bind('.', lambda event: self.press('.'))
-        self.root.bind('+', lambda event: self.press('+'))
-        self.root.bind('-', lambda event: self.press('-'))
-        self.root.bind('*', lambda event: self.press('*'))
-        self.root.bind('/', lambda event: self.press('/'))
-        self.root.bind('(', lambda event: self.press('('))
-        self.root.bind(')', lambda event: self.press(')'))
-        self.root.bind('[', lambda event: self.press('['))
-        self.root.bind(']', lambda event: self.press(']'))
-
-
         self.root.bind('<Return>', lambda event: self.equal_press())
         self.root.bind('<BackSpace>', lambda event: self.clear())
 
