@@ -7,15 +7,15 @@ import calc_app.util.errors as errors
 
 # globally declare the entry variable
 entry = ''
-fullEntry = ''
-ans = ''
+full_entry = ''
+answer = ''
 
 
 # Function to update entry
 # in the text entry box
 def press(eqValue):
     # point out the global entry variable
-    global entry, fullEntry
+    global entry, full_entry
     # concatenation of string
     fullEntry = fullEntry + str(eqValue)
     entry = entry + str(eqValue)
@@ -26,7 +26,7 @@ def press(eqValue):
 
 def funcPress(value, eqValue):
     # point out the global entry variable
-    global entry, fullEntry
+    global entry, full_entry
 
     # concatenation of string
     # handling of the power function is tricky as we need to find the first argument for the function in fullEntry. For the time being, this function does not support chaining within other functions
@@ -57,7 +57,7 @@ def funcPress(value, eqValue):
 def equalpress():
     # Try and except statement is used
     # for handling syntax errors, invalid values is checked inside the function itself
-    global entry, fullEntry, ans
+    global entry, full_entry, answer
     # Put that code inside the try block
     # which may generate the error
     try:
@@ -101,14 +101,14 @@ def equalpress():
 # Function to clear the contents
 # of text entry box
 def clear():
-    global entry, fullEntry
+    global entry, full_entry
     entry = ''
     fullEntry = ''
     equation.set('')
 
 
 def complete():
-    global entry, fullEntry
+    global entry, full_entry
     # Fills the missing brackets
     counterE = 0
     for i in range(0, len(entry)):
@@ -269,9 +269,9 @@ try:
     Decimal.grid(row = 5, column = 0)
     gui.bind('.', lambda event: press('.'))
 
-    ansButton = Button(gui, text = 'Ans', fg = 'black', bg = 'white', command = lambda: press(ans), height = 1, width = 7)
+    ansButton = Button(gui, text = 'Ans', fg = 'black', bg = 'white', command = lambda: press(answer), height = 1, width = 7)
     ansButton.grid(row = 2, column = 4)
-    gui.bind('<Control-a>', lambda event: press(ans))
+    gui.bind('<Control-a>', lambda event: press(answer))
 
     openPar = Button(gui, text = ' ( ', fg = 'black', bg = 'white', command = lambda: press('('), height = 1, width = 7)
     openPar.grid(row = 6, column = 0)
