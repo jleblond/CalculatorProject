@@ -98,9 +98,9 @@ class TestMAD(unittest.TestCase):
     '''
     def test_mad(self):
         test_arr = [5, 12, 1, 0, 4, 22, 15, 3, 9] 
-        rounded_result = round(MAD(test_arr))
+        rounded_result = MAD(test_arr)
         pandas_series = pandas.Series(test_arr)
-        rounded_pandas_result = round(pandas_series.mad())
+        rounded_pandas_result = pandas_series.mad()
         self.assertEqual(rounded_result, rounded_pandas_result)
 
 if __name__ == '__main__':
