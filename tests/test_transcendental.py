@@ -97,7 +97,7 @@ class TestMAD(unittest.TestCase):
     Transcendental function: Mean Aboslute Deviation ()
     '''
     def test_mad(self):
-        test_arr = [5, 12, 1, 0, 4, 22, 15, 3, 9] 
+        test_arr = [5, 57, 106, 0, 28, 22, 15, 156, 9, 86, 65, 37, 0, 16] 
         rounded_result = MAD(test_arr)
         pandas_series = pandas.Series(test_arr)
         rounded_pandas_result = pandas_series.mad()
