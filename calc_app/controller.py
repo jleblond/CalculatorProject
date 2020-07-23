@@ -47,6 +47,7 @@ class Controller():
             self.config_button_func_press(self.view.transcendental_buttons[index], command_args[0], command_args[1])
 
         for index, key in enumerate(self.view.math_helper_buttons_attrs):
+            command_args = self.view.math_helper_buttons_attrs[key]['command_args']
             self.config_button_func_press(self.view.math_helper_buttons[index], command_args[0], command_args[1])
 
         for index, key in enumerate(self.view.math_buttons_attrs):
