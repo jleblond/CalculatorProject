@@ -32,39 +32,32 @@ class Controller():
         self.root.deiconify()
         self.root.mainloop()
 
-    def config_button_press_nb(self, nb_pressed):
-        self.view.buttons[nb_pressed].config(command=lambda: self.press(nb_pressed))
+    def config_button_press(self, button, press_arg):
+        button.config(command=lambda: self.press(press_arg))
+
+    def config_button_func_press(self, button, arg1, arg2):
+        button.config(command=lambda: self.func_press(arg1, arg2))
 
     def configure_commands(self):
-        for i in range(len(self.view.buttons)):
-            self.config_button_press_nb(i)
+        for index in range(len(self.view.number_buttons)):
+            self.config_button_press(self.view.number_buttons[index], index)
 
-        self.view.plus.config(command=lambda: self.press('+'))
-        self.view.minus.config(command=lambda: self.press('-'))
-        self.view.multiply.config(command=lambda: self.press('*'))
-        self.view.divide.config(command=lambda: self.press('/'))
+        for index, key in enumerate(self.view.transcendental_buttons_attrs):
+            command_args = self.view.transcendental_buttons_attrs[key]['command_args']
+            self.config_button_func_press(self.view.transcendental_buttons[index], command_args[0], command_args[1])
 
-        self.view.decimal.config(command=lambda: self.press('.'))
-        self.view.coma.config(command=lambda: self.press(', '))
+        for index, key in enumerate(self.view.math_helper_buttons_attrs):
+            self.config_button_func_press(self.view.math_helper_buttons[index], command_args[0], command_args[1])
 
-        self.view.open_par.config(command=lambda: self.press('('))
-        self.view.close_par.config(command=lambda: self.press(')'))
-        self.view.open_brac.config(command=lambda: self.press('['))
-        self.view.close_brac.config(command=lambda: self.press(']'))
+        for index, key in enumerate(self.view.math_buttons_attrs):
+            press_arg = self.view.math_buttons_attrs[key]['text'].strip()
+            self.config_button_press(self.view.math_buttons[index], press_arg)
 
-        self.view.pi.config(command=lambda: self.func_press('math_helper.compute_pi()', '\u03C0'))
-        self.view.sqrt.config(command=lambda: self.func_press('math_helper.square_root(', '\u221A('))
-
-        self.view.log10.config(command=lambda: self.func_press('transcendental.log10(', 'log10('))
-        self.view.sinx.config(command=lambda: self.func_press('transcendental.sin(', 'sin('))
-        self.view.cosh.config(command=lambda: self.func_press('transcendental.cosh(', 'cosh('))
-        self.view.mad.config(command=lambda: self.func_press('transcendental.MAD([', 'MAD(['))
-        self.view.sd.config(command=lambda: self.func_press('transcendental.standard_deviation([', 'SD(['))
-        self.view.power10.config(command=lambda: self.func_press('transcendental.pow_ten(', '10^('))
-        self.view.power.config(command=lambda: self.func_press('transcendental.power(', '^('))
+        for index, key in enumerate(self.view.other_char_buttons_attrs):
+            press_arg = self.view.other_char_buttons_attrs[key]['text'].strip()
+            self.config_button_press(self.view.other_char_buttons[index], press_arg)
 
         self.view.answer_button.config(command=lambda: self.press(self.model.answer))
-
         self.view.clear_button.config(command=lambda: self.clear())
         self.view.equal.config(command=lambda: self.equal_press())
 
@@ -73,7 +66,7 @@ class Controller():
         self.root.bind(str_button_value, lambda event: self.press(str_button_value))
 
     def bind_keys(self):
-        for i in range(len(self.view.buttons)):
+        for i in range(len(self.view.number_buttons)):
             self.bind_key_simple_button(i)
 
         simple_operator_keys = [',', '.', '+', '-', '*', '/', '(', ')', '[', ']']
@@ -92,6 +85,7 @@ class Controller():
         self.root.bind('<Control-Alt-p>', lambda event: self.func_press('transcendental.pow_ten(', '10^('))
         self.root.bind('<Control-p>', lambda event: self.func_press('transcendental.power(', '^('))
         self.root.bind('^', lambda event: self.func_press('transcendental.power(', '^('))
+
         self.root.bind('<Control-a>', lambda event: self.press(self.model.answer))
 
 

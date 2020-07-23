@@ -30,7 +30,6 @@ class Model():
         for _ in range(0, counter_e):
             self.update_entry(']')
 
-
     def fill_missing_parenthesis(self):
         counter_e = 0
         for i in range(0, len(self.entry)):
