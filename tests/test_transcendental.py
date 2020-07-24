@@ -2,9 +2,9 @@ import unittest
 import statistics
 import math
 import pandas
-import app.util.errors as errors
-from app.math.transcendental import *
-from app.math.math_helper import *
+import calc_app.util.errors as errors
+from calc_app.mathlib.transcendental import *
+from calc_app.mathlib.math_helper import *
 
 
 # tests cosh function from calculator.transcendental
@@ -88,6 +88,7 @@ class TestLog10(unittest.TestCase):
         x = 0
         self.assertRaises(errors.IllegalArgumentError, log10, x)
 
+
 class TestMAD(unittest.TestCase):
     '''
     Test custom Mean Abosolute Deviation (MAD) function over pandas.Series().mad()
@@ -103,5 +104,78 @@ class TestMAD(unittest.TestCase):
         rounded_pandas_result = pandas_series.mad()
         self.assertEqual(rounded_result, rounded_pandas_result)
 
+        
+class TestPower(unittest.TestCase):
+    """
+    Test custom Transcendental Power function result over math.pow result
+
+    Date: 2020-07-12
+    Author: Andrew Korolus (40055081)
+    Transcendental function: power (x^y)
+    """
+    def test_positive_power(self):
+        x = 3
+        y = 8
+        cust_power = power(x, y)
+        real_power = math.pow(x, y)
+        self.assertEqual(cust_power, real_power)
+
+    def test_negative_power(self):
+        x = 26
+        y = -3
+        cust_power = power(x, y)
+        real_power = math.pow(x, y)
+        self.assertEqual(cust_power, real_power)
+
+    def test_zero_exp_power(self):
+        x = 2
+        y = 0
+        cust_power = power(x, y)
+        real_power = math.pow(x, y)
+        self.assertEqual(cust_power, real_power)
+
+    def test_zero_base_power(self):
+        x = 0
+        y = 9
+        cust_power = power(x, y)
+        real_power = math.pow(x, y)
+        self.assertEqual(cust_power, real_power)
+
+    def test_decimal_base_power(self):
+        x = 0.89
+        y = 5
+        cust_power = round(power(x, y), 4)
+        real_power = round(math.pow(x, y), 4)
+        self.assertEqual(cust_power, real_power)
+
+    def test_decimal_exp_power(self):
+        x = 5
+        y = 0.89
+        cust_power = round(power(x, y), 4)
+        real_power = round(math.pow(x, y), 4)
+        self.assertEqual(cust_power, real_power)
+
+    def test_neg_decimal_exp_power(self):
+        x = 5
+        y = -0.89
+        cust_power = round(power(x, y), 4)
+        real_power = round(math.pow(x, y), 4)
+        self.assertEqual(cust_power, real_power)
+
+    def test_large_power(self):
+        x = 12
+        y = 25
+        cust_power = power(x, y)
+        real_power = math.pow(x, y)
+        self.assertEqual(cust_power, real_power)
+
+    def test_small_power(self):
+        x = 89
+        y = 0.00000000000061
+        cust_power = round(power(x, y), 4)
+        real_power = round(math.pow(x, y), 4)
+        self.assertEqual(cust_power, real_power)
+
+        
 if __name__ == '__main__':
     unittest.main()
