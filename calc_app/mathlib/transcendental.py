@@ -159,10 +159,13 @@ def rad_sin(x):
     Computes the taylor series for Sin.
     Source: https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
     '''
-    x = x %(2 * math_helper.compute_pi())
+    if(x>0):
+        x = x %(2 * math_helper.compute_pi())
+    if(x<0):
+        x = (2 * math_helper.compute_pi() - (-x % (2 * math_helper.compute_pi())))
     out = 0
     sign = -1
-    for i in range(1, 100, 2):
+    for i in range(1, 150, 2):
         sign = -sign
         out += sign * math_helper.int_pow(x,i)/math_helper.factorial_loop(i)
     return out
