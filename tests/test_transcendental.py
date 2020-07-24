@@ -169,14 +169,14 @@ class TestPower(unittest.TestCase):
         real_power = math.pow(x, y)
         self.assertEqual(cust_power, real_power)
 
-    def test_small_power(self):
+    def test_transcendental_power(self):
         x = 8
         y = compute_pi()
         cust_power = round(power(x, y), 4)
         real_power = round(math.pow(x, y), 4)
         self.assertEqual(cust_power, real_power)
 
-    def test_transcendental_power(self):
+    def test_small_power(self):
         x = 89
         y = 0.00000000000061
         cust_power = round(power(x, y), 4)
