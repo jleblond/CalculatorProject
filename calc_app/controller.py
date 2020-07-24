@@ -3,7 +3,6 @@ from calc_app.model import *
 from calc_app.view import *
 import calc_app.util.log as log
 import calc_app.util.errors as errors
-import pdb
 
 class Controller():
     def __init__(self):
@@ -22,8 +21,8 @@ class Controller():
 
         self.equation.set('0')
 
-        self.configure_commands()
-        self.bind_keys()
+        self._configure_commands()
+        self._bind_keys()
 
     def run(self):
         self.root.title("ETERNITY")
@@ -31,64 +30,6 @@ class Controller():
         self.root.resizable(0, 0)
         self.root.deiconify()
         self.root.mainloop()
-
-    def config_button_press(self, button, press_arg):
-        button.config(command=lambda: self.press(press_arg))
-
-    def config_button_func_press(self, button, arg1, arg2):
-        button.config(command=lambda: self.func_press(arg1, arg2))
-
-    def configure_commands(self):
-        for index in range(len(self.view.number_buttons)):
-            self.config_button_press(self.view.number_buttons[index], index)
-
-        for index, key in enumerate(self.view.transcendental_buttons_attrs):
-            command_args = self.view.transcendental_buttons_attrs[key]['command_args']
-            self.config_button_func_press(self.view.transcendental_buttons[index], command_args[0], command_args[1])
-
-        for index, key in enumerate(self.view.math_helper_buttons_attrs):
-            command_args = self.view.math_helper_buttons_attrs[key]['command_args']
-            self.config_button_func_press(self.view.math_helper_buttons[index], command_args[0], command_args[1])
-
-        for index, key in enumerate(self.view.math_buttons_attrs):
-            press_arg = self.view.math_buttons_attrs[key]['text'].strip()
-            self.config_button_press(self.view.math_buttons[index], press_arg)
-
-        for index, key in enumerate(self.view.other_char_buttons_attrs):
-            press_arg = self.view.other_char_buttons_attrs[key]['text'].strip()
-            self.config_button_press(self.view.other_char_buttons[index], press_arg)
-
-        self.view.answer_button.config(command=lambda: self.press(self.model.answer))
-        self.view.clear_button.config(command=lambda: self.clear())
-        self.view.equal.config(command=lambda: self.equal_press())
-
-    def bind_key_simple_button(self, button_value):
-        str_button_value = str(button_value)
-        self.root.bind(str_button_value, lambda event: self.press(str_button_value))
-
-    def bind_keys(self):
-        for i in range(len(self.view.number_buttons)):
-            self.bind_key_simple_button(i)
-
-        simple_operator_keys = [',', '.', '+', '-', '*', '/', '(', ')', '[', ']']
-        for i in range(len(simple_operator_keys)):
-            self.bind_key_simple_button(simple_operator_keys[i])
-
-        self.root.bind('<Escape>', lambda event: self.root.iconify())
-        self.root.bind('<Return>', lambda event: self.equal_press())
-        self.root.bind('<BackSpace>', lambda event: self.clear())
-
-        self.root.bind('<Control-l>', lambda event: self.func_press('transcendental.log10(', 'log10('))
-        self.root.bind('<Control-m>', lambda event: self.func_press('transcendental.MAD([', 'MAD(['))
-        self.root.bind('<Control-s>', lambda event: self.func_press('transcendental.sin(', 'sin('))
-        self.root.bind('<Control-Alt-s>', lambda event: self.func_press('transcendental.standard_deviation([', 'SD(['))
-        self.root.bind('<Control-c>', lambda event: self.func_press('transcendental.cosh(', 'cosh('))
-        self.root.bind('<Control-Alt-p>', lambda event: self.func_press('transcendental.pow_ten(', '10^('))
-        self.root.bind('<Control-p>', lambda event: self.func_press('transcendental.power(', '^('))
-        self.root.bind('^', lambda event: self.func_press('transcendental.power(', '^('))
-
-        self.root.bind('<Control-a>', lambda event: self.press(self.model.answer))
-
 
     # Function to clear the contents of text entry box
     def clear(self):
@@ -146,3 +87,62 @@ class Controller():
     def complete(self):
         self.model.fill_missing_bracket()
         self.model.fill_missing_parenthesis()
+
+
+    def _configure_commands(self):
+        for index in range(len(self.view.number_buttons)):
+            self._config_button_press(self.view.number_buttons[index], index)
+
+        self._config_arr_of_buttons_func_press(self.view.transcendental_buttons, self.view.transcendental_buttons_attrs)
+        self._config_arr_of_buttons_func_press(self.view.math_helper_buttons, self.view.math_helper_buttons_attrs)
+
+        self._config_arr_of_buttons_press(self.view.math_buttons, self.view.math_buttons_attrs)
+        self._config_arr_of_buttons_press(self.view.other_char_buttons, self.view.other_char_buttons_attrs)
+
+        self.view.answer_button.config(command=lambda: self.press(self.model.answer))
+        self.view.clear_button.config(command=lambda: self.clear())
+        self.view.equal.config(command=lambda: self.equal_press())
+
+    def _bind_keys(self):
+        for i in range(len(self.view.number_buttons)):
+            self._bind_key_simple_button(i)
+
+        simple_operator_keys = [',', '.', '+', '-', '*', '/', '(', ')', '[', ']']
+        for i in range(len(simple_operator_keys)):
+            self._bind_key_simple_button(simple_operator_keys[i])
+
+        self.root.bind('<Escape>', lambda event: self.root.iconify())
+        self.root.bind('<Return>', lambda event: self.equal_press())
+        self.root.bind('<BackSpace>', lambda event: self.clear())
+
+        self.root.bind('<Control-l>', lambda event: self.func_press('transcendental.log10(', 'log10('))
+        self.root.bind('<Control-m>', lambda event: self.func_press('transcendental.MAD([', 'MAD(['))
+        self.root.bind('<Control-s>', lambda event: self.func_press('transcendental.sin(', 'sin('))
+        self.root.bind('<Control-Alt-s>', lambda event: self.func_press('transcendental.standard_deviation([', 'SD(['))
+        self.root.bind('<Control-c>', lambda event: self.func_press('transcendental.cosh(', 'cosh('))
+        self.root.bind('<Control-Alt-p>', lambda event: self.func_press('transcendental.pow_ten(', '10^('))
+        self.root.bind('<Control-p>', lambda event: self.func_press('transcendental.power(', '^('))
+        self.root.bind('^', lambda event: self.func_press('transcendental.power(', '^('))
+
+        self.root.bind('<Control-a>', lambda event: self.press(self.model.answer))
+
+
+    def _bind_key_simple_button(self, button_value):
+        str_button_value = str(button_value)
+        self.root.bind(str_button_value, lambda event: self.press(str_button_value))
+
+    def _config_button_press(self, button, press_arg):
+        button.config(command=lambda: self.press(press_arg))
+
+    def _config_button_func_press(self, button, arg1, arg2):
+        button.config(command=lambda: self.func_press(arg1, arg2))
+
+    def _config_arr_of_buttons_press(self, arr_buttons, hash_buttons_attrs):
+        for index, key in enumerate(hash_buttons_attrs):
+            press_arg = hash_buttons_attrs[key]['text'].strip()
+            self._config_button_press(arr_buttons[index], press_arg)
+
+    def _config_arr_of_buttons_func_press(self, arr_buttons, hash_buttons_attrs):
+        for index, key in enumerate(hash_buttons_attrs):
+            command_args = hash_buttons_attrs[key]['command_args']
+            self._config_button_func_press(arr_buttons[index], command_args[0], command_args[1])
