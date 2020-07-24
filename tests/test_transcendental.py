@@ -1,9 +1,10 @@
 import unittest
 import statistics
 import math
-import app.util.errors as errors
-from app.math.transcendental import *
-from app.math.math_helper import *
+import pandas
+import calc_app.util.errors as errors
+from calc_app.mathlib.transcendental import *
+from calc_app.mathlib.math_helper import *
 
 
 # tests cosh function from calculator.transcendental
@@ -51,28 +52,28 @@ class TestCosh(unittest.TestCase):
 
 
 class TestStandardDeviation(unittest.TestCase):
-    """
+    '''
     Test custom Transcendental Standard Deviation function result over statistics.stdev result
 
     Date: 2020-07-05
     Author: Jasmine Leblond-Chartrand
     Transcendental function: σ (Standard Deviation)
-    """
+    '''
     def test_standard_deviation(self):
         test_arr = [0, 9, 10, 345, 903]
-        rounded_std_deviation = round(standard_deviation(test_arr), 6)
-        rounded_math_stdev = round(statistics.stdev(test_arr), 6)
+        rounded_std_deviation = round(standard_deviation(test_arr), 4)
+        rounded_math_stdev = round(statistics.stdev(test_arr), 4)
         self.assertEqual(rounded_std_deviation, rounded_math_stdev)
 
 
 class TestLog10(unittest.TestCase):
-    """
-        Test custom Transcendental log10(x) function result over math.log10(x) result
+    '''
+    Test custom Transcendental log10(x) function result over math.log10(x) result
 
-        Date: 2020-07-05
-        Author: Alexis Laurens-Renner 40055137
-        Transcendental function: log10(x)
-        """
+    Date: 2020-07-05
+    Author: Alexis Laurens-Renner 40055137
+    Transcendental function: log10(x)
+    '''
     def test_log10(self):
         x = 1000
         while x >0:
@@ -87,6 +88,23 @@ class TestLog10(unittest.TestCase):
         x = 0
         self.assertRaises(errors.IllegalArgumentError, log10, x)
 
+
+class TestMAD(unittest.TestCase):
+    '''
+    Test custom Mean Abosolute Deviation (MAD) function over pandas.Series().mad()
+
+    Date: 2020-07-07
+    Author: Jeffrey Lam Yuk Tseung
+    Transcendental function: Mean Aboslute Deviation ()
+    '''
+    def test_mad(self):
+        test_arr = [5, 57, 106, 0, 28, 22, 15, 156, 9, 86, 65, 37, 0, 16] 
+        rounded_result = MAD(test_arr)
+        pandas_series = pandas.Series(test_arr)
+        rounded_pandas_result = pandas_series.mad()
+        self.assertEqual(rounded_result, rounded_pandas_result)
+
+        
 class TestPower(unittest.TestCase):
     """
     Test custom Transcendental Power function result over math.pow result

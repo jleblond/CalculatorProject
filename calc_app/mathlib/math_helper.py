@@ -161,7 +161,7 @@ def square_root(n):
     while(True):
         x = (x_prev + n/x_prev)/2
         if absolute(x_prev - x) < precision_value:
-            return x
+            return round(x, 4)
         x_prev = x
 
 
