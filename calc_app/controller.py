@@ -120,9 +120,9 @@ class Controller():
         self.root.bind('<Control-s>', lambda event: self.func_press('transcendental.sin(', 'sin('))
         self.root.bind('<Control-Alt-s>', lambda event: self.func_press('transcendental.standard_deviation([', 'SD(['))
         self.root.bind('<Control-c>', lambda event: self.func_press('transcendental.cosh(', 'cosh('))
-        self.root.bind('<Control-Alt-p>', lambda event: self.func_press('transcendental.pow_ten(', '10^('))
-        self.root.bind('<Control-p>', lambda event: self.func_press('transcendental.power(', '^('))
-        self.root.bind('^', lambda event: self.func_press('transcendental.power(', '^('))
+        self.root.bind('<Control-Alt-p>', lambda event: self.func_press('transcendental.pow_ten(', 'pow10('))
+        self.root.bind('<Control-p>', lambda event: self.func_press('transcendental.power(', 'pow('))
+        self.root.bind('^', lambda event: self.func_press('transcendental.power(', 'pow('))
 
         self.root.bind('<Control-a>', lambda event: self.press(self.model.answer))
 

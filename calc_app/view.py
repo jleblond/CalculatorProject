@@ -39,8 +39,8 @@ class View(tkinter.Toplevel):
             'sd': {'text': ' SD([ ', 'row': 3, 'column': 5, 'command_args': ['transcendental.standard_deviation([', 'SD([']},
             'cosh': {'text': ' cosh(', 'row': 4, 'column': 4, 'command_args': ['transcendental.cosh(', 'cosh(']},
             'log10': {'text': 'log10( ', 'row': 4, 'column': 5, 'command_args': ['transcendental.log10(', 'log10(']},
-            'power10': {'text': ' 10^( ', 'row': 5, 'column': 4, 'command_args': ['transcendental.pow_ten(', '10^(']},
-            'power': {'text': ' ^ ', 'row': 5, 'column': 5, 'command_args': ['transcendental.power(', '^(']},
+            'power10': {'text': ' pow10 ', 'row': 5, 'column': 4, 'command_args': ['transcendental.pow_ten(', 'pow10(']},
+            'power': {'text': ' pow( ', 'row': 5, 'column': 5, 'command_args': ['transcendental.power(', 'pow(']},
         }
         self.math_helper_buttons_attrs = {
             'pi': {'text': ' \u03C0 ', 'row': 6, 'column': 4, 'command_args': ['math_helper.compute_pi()', '\u03C0']},
