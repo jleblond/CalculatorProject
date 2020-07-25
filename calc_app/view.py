@@ -35,7 +35,7 @@ class View(tkinter.Toplevel):
         }
         self.transcendental_buttons_attrs = {
             'mad': {'text': ' MAD([ ', 'row': 2, 'column': 5, 'command_args': ['transcendental.MAD([', 'MAD([']},
-            'sinx': {'text': ' sin( ', 'row': 3, 'column': 4, 'command_args': ['transcendental.sin(', 'sin(']},
+            'sinx': {'text': ' sin( ', 'row': 3, 'column': 4, 'command_args': ['transcendental.rad_sin(', 'sin(']},
             'sd': {'text': ' SD([ ', 'row': 3, 'column': 5, 'command_args': ['transcendental.standard_deviation([', 'SD([']},
             'cosh': {'text': ' cosh(', 'row': 4, 'column': 4, 'command_args': ['transcendental.cosh(', 'cosh(']},
             'log10': {'text': 'log10( ', 'row': 4, 'column': 5, 'command_args': ['transcendental.log10(', 'log10(']},
