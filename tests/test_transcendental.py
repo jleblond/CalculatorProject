@@ -234,6 +234,83 @@ class TestSin(unittest.TestCase):
         real_sin = math.sin(x)
         self.assertEqual(round(cust_sin,6), round(real_sin,6))
 
+class TestPowerTen(unittest.TestCase):
+    """
+    Test custom Transcendental Power function result over math.pow result
+
+    Date: 2020-07-25
+    Author: William Kang (40099021)
+    Transcendental function: power (10^y)
+    """
+    def test_positive_power(self):
+        x = 10
+        y = 8
+        cust_power = pow_ten(y)
+        real_power = math.pow(x, y)
+        self.assertEqual(cust_power, real_power)
+
+    def test_negative_power(self):
+        x = 10
+        y = -3
+        cust_power = pow_ten(y)
+        real_power = math.pow(x, y)
+        self.assertEqual(cust_power, real_power)
+
+    def test_zero_exp_power(self):
+        x = 10
+        y = 0
+        cust_power = pow_ten(y)
+        real_power = math.pow(x, y)
+        self.assertEqual(cust_power, real_power)
+
+    def test_zero_base_power(self):
+        x = 10
+        y = 9
+        cust_power = pow_ten(y)
+        real_power = math.pow(x, y)
+        self.assertEqual(cust_power, real_power)
+
+    def test_decimal_base_power(self):
+        x = 10
+        y = 5
+        cust_power = round(pow_ten(y), 4)
+        real_power = round(math.pow(x, y), 4)
+        self.assertEqual(cust_power, real_power)
+
+    def test_decimal_exp_power(self):
+        x = 10
+        y = 0.89
+        cust_power = round(pow_ten(y), 4)
+        real_power = round(math.pow(x, y), 4)
+        self.assertEqual(cust_power, real_power)
+
+    def test_neg_decimal_exp_power(self):
+        x = 10
+        y = -0.89
+        cust_power = round(pow_ten(y), 4)
+        real_power = round(math.pow(x, y), 4)
+        self.assertEqual(cust_power, real_power)
+
+    def test_large_power(self):
+        x = 10
+        y = 10
+        cust_power = pow_ten(y)
+        real_power = math.pow(x, y)
+        self.assertEqual(cust_power, real_power)
+
+    def test_transcendental_power(self):
+        x = 10
+        y = compute_pi()
+        cust_power = round(pow_ten(y), 4)
+        real_power = round(math.pow(x, y), 4)
+        self.assertEqual(cust_power, real_power)
+
+    def test_small_power(self):
+        x = 10
+        y = 0.00000000000061
+        cust_power = round(pow_ten(y), 4)
+        real_power = round(math.pow(x, y), 4)
+        self.assertEqual(cust_power, real_power)
 
 
 if __name__ == '__main__':
