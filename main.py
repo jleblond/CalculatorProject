@@ -10,9 +10,7 @@ from calc_app.controller import Controller
 
 
 if __name__ == '__main__':
-    #Log.clearLog()
     log.start()
-    #import calc_app.gui.gui
     c = Controller()
     c.run()
     log.end()
