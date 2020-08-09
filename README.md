@@ -9,7 +9,7 @@ ETERNITY is designed to be able to perform basic arithmetic, including addition,
 
 ## Installation:
 Steps to run the project on Windows:
-1. Run the 'Team-F_ETERNITY.exe' file by double-clicking it.
+1. Run the 'Team-F_ETERNITY.exe' file by double-clicking it, located in the /dist directory.
 2. If, for whatever reason (say firewall), you cannot run the 'Team-F_ETERNITY.exe' file by simply double-clicking it,
    try to right-click the file and select 'Run as Administrator'.
 
