@@ -34,17 +34,15 @@ Below are some examples of the tasks to be performed:
 7. Calculate the following value: sin(pi/4)
 
 ## Features
-
+All statistics related functions, such as MAD and standard deviation, are performed using SAMPLE. 
+All trigonometric related functions, such as sine, cosine, etc., are performed using RADIANS.
+Each answer calculated by ETERNITY is 100% accurate as of the first four decimal places.
 
 ## Screenshots
 ![How to run the program 1](docs/img/how-to-run-program-1.png)
 ![How to run the program 2](docs/img/how-to-run-program-2.png)
 ![How to run the program 3](docs/img/how-to-run-program-3.png)
 ![How to run the program 4](docs/img/how-to-run-program-4.png)
-
-
-## Design
-`TODO`
 
 ### Implementation
 
@@ -57,14 +55,6 @@ Below are some examples of the tasks to be performed:
 ### `MathHelper` sub-package
 #### `MathHelper` module
 + contains all other math functions that are used to calculate transcendental functions
-
-### `GUI` sub-package
-`TODO`
-
-### `Logger` sub-package
-`TODO`
-
-
 
 ## Tests
 Instructions to run all unit tests:
