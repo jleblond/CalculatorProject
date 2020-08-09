@@ -34,9 +34,9 @@ Below are some examples of the tasks to be performed:
 7. Calculate the following value: sin(pi/4)
 
 ## Features
-All statistics related functions, such as MAD and standard deviation, are performed using SAMPLE. 
-All trigonometric related functions, such as sine, cosine, etc., are performed using RADIANS.
-Each answer calculated by ETERNITY is 100% accurate as of the first four decimal places.
++ All statistics related functions, such as MAD and standard deviation, are performed using SAMPLE. 
++ All trigonometric related functions, such as sine, cosine, etc., are performed using RADIANS.
++ Each answer calculated by ETERNITY is 100% accurate as of the first four decimal places.
 
 ## Screenshots
 ![How to run the program 1](docs/img/how-to-run-program-1.png)
