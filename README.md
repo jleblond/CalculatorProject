@@ -37,6 +37,10 @@ Below are some examples of the tasks to be performed:
 
 
 ## Screenshots
+![How to run the program 1](docs/img/how-to-run-program-1.png)
+![How to run the program 2](docs/img/how-to-run-program-2.png)
+![How to run the program 3](docs/img/how-to-run-program-3.png)
+![How to run the program 4](docs/img/how-to-run-program-4.png)
 
 
 ## Design
