@@ -7,7 +7,7 @@ ETERNITY is a team project spanning over the Summer 2020 semester. Indeed, the g
 ETERNITY is designed to be able to perform basic arithmetic, including addition, subtraction, multiplication, and division, as well as incorporate some of the most widely used transcendental functions.
 
 
-### Installation:
+## Installation:
 Steps to run the project on Windows:
 1. Run the 'Team-F_ETERNITY.exe' file by double-clicking it.
 2. If, for whatever reason (say firewall), you cannot run the 'Team-F_ETERNITY.exe' file by simply double-clicking it,
@@ -16,7 +16,7 @@ Steps to run the project on Windows:
 A calculator GUI should appear (note: If you are on a MacOS system in dark mode, the calculator may not appear correctly).
 To use the calculator, click on the desired number and/or function buttons in the appropriate order to perform a calculation. 
 
-### How to use: 
+## How to use: 
 For example, to perform 15^10, select the following buttons "pow(", "15", ",", "10", ")", "=". The calculator works like programming
 a function, so a simple power would read "pow(15, 10)", or a simple sine would read "sin(5)".
 
@@ -42,7 +42,7 @@ Below are some examples of the tasks to be performed:
 ## Design
 `TODO`
 
-## Implementation
+### Implementation
 
 ### `Calculator` sub-package
 #### `Calculator` module
@@ -68,7 +68,7 @@ Instructions to run all unit tests:
 $ python -m unittest discover tests
 ```
 
-### Members:
+## Members:
 | Name | Assigned function |
 |---|---|
 |William Chack Suen Kang| 10^x|
